@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System;
 using System.Collections.Generic;
+using KillerCatsFromOuterSpace.Models;
 
 namespace KillerCatsFromOuterSpace.Pages
 {
@@ -9,19 +11,36 @@ namespace KillerCatsFromOuterSpace.Pages
 
         public void OnGet()
         {
-            UpcomingEvents = new List<Event>
-            {
-                new Event { Date = "2023-10-15", Location = "Local Venue", Description = "Live performance" },
-                new Event { Date = "2023-11-20", Location = "City Park", Description = "Outdoor concert" },
-                new Event { Date = "2023-12-05", Location = "Downtown Club", Description = "Holiday special" }
-            };
+            UpcomingEvents = GenerateUpcomingEvents();
         }
-    }
 
-    public class Event
-    {
-        public string Date { get; set; }
-        public string Location { get; set; }
-        public string Description { get; set; }
+        private List<Event> GenerateUpcomingEvents()
+        {
+            var events = new List<Event>();
+            var today = DateTime.Today;
+
+            events.Add(new Event
+            {
+                Date = today.AddDays(15).ToString("MM-dd-yyyy"),
+                Location = "The Aztec Theatre",
+                Description = "Live performance"
+            });
+
+            events.Add(new Event
+            {
+                Date = today.AddMonths(1).AddDays(20).ToString("MM-dd-yyyy"),
+                Location = "San Antonio River Walk",
+                Description = "Outdoor concert"
+            });
+
+            events.Add(new Event
+            {
+                Date = today.AddMonths(2).AddDays(5).ToString("MM-dd-yyyy"),
+                Location = "The Majestic Theatre",
+                Description = "Holiday special"
+            });
+
+            return events;
+        }
     }
 }

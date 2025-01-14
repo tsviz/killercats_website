@@ -39,3 +39,148 @@ img {
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
+
+@keyframes spin {
+    0% { 
+        transform: translateY(-50%) rotate(0deg); 
+    }
+    100% { 
+        transform: translateY(-50%) rotate(360deg); 
+    }
+}
+
+.spinning-guitar {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 50px;
+    height: auto;
+    animation: spin 4s linear infinite;
+}
+
+.spinning-guitar.left {
+    left: 20px;
+}
+
+.spinning-guitar.right {
+    right: 20px;
+}
+
+.fixed-audio-player {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+    background: linear-gradient(45deg, #000000, #2c2c2c);
+    padding: 15px 25px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.3);
+    border: 2px solid #ff0000;
+    transform: skew(-5deg);
+}
+
+.fixed-audio-player audio {
+    width: 250px;
+    height: 40px;
+}
+
+.custom-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.play-button {
+    background-color: #ff0000;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    outline: none;
+}
+
+.volume-slider {
+    width: 100px;
+    height: 5px;
+    background: #ff0000;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+}
+
+.volume-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 10px;
+    height: 10px;
+    background: white;
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+.equalizer {
+    display: flex;
+    gap: 3px;
+    height: 30px;
+    align-items: flex-end;
+}
+
+.bar {
+    width: 3px;
+    background: #ff0000;
+    border-radius: 3px;
+    animation: equalize 1s infinite;
+    box-shadow: 0 0 5px #ff0000;
+}
+
+.bar:nth-child(1) { height: 60%; animation-delay: 0.0s; }
+.bar:nth-child(2) { height: 30%; animation-delay: 0.1s; }
+.bar:nth-child(3) { height: 75%; animation-delay: 0.2s; }
+.bar:nth-child(4) { height: 90%; animation-delay: 0.3s; }
+.bar:nth-child(5) { height: 60%; animation-delay: 0.4s; }
+
+@keyframes equalize {
+    0% { transform: scaleY(1); }
+    50% { transform: scaleY(0.3); }
+    100% { transform: scaleY(1); }
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Metal+Mania&display=swap');
+
+.player-logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'Metal Mania', cursive;
+    color: #ff0000;
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.7);
+    transform: skew(5deg);
+}
+
+.player-logo span {
+    line-height: 1;
+}
+
+.player-logo span:first-child {
+    font-size: 20px;
+}
+
+.player-logo .small-text {
+    font-size: 12px;
+    color: #ff6666;
+}
+
+.player-logo:hover {
+    text-shadow: 0 0 15px rgba(255, 0, 0, 0.9);
+    transform: skew(5deg) scale(1.05);
+    transition: all 0.3s ease;
+}

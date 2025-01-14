@@ -1,26 +1,124 @@
+@page
+@model KillerCatsFromOuterSpace.Pages.IndexModel
+@{
+    ViewData["Title"] = "Home";
+}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Killer Cats from Outer Space</title>
+    <title>Home Page</title>
     <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <style>
+        .events-section {
+            background-color: #f8f9fa;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 8px;
+        }
+        .events-section h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+        .band-photo {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 20px;
+        }
+        .jumbotron {
+            padding: 2rem 1rem;
+        }
+        .container {
+            max-width: 960px;
+        }
+        .main-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .main-content > div {
+            flex: 1;
+            margin: 10px;
+        }
+        .about-section {
+            background-color: #e9ecef;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 8px;
+        }
+        .about-section h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+        .about-section ul {
+            list-style: none;
+            padding: 0;
+        }
+        .about-section li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .about-section li i {
+            font-size: 1.5rem;
+            margin-right: 10px;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
 </head>
 <body>
-    <header>
-        <h1>Welcome to Killer Cats from Outer Space!</h1>
-    </header>
-    <main>
-        <section>
-            <img src="~/images/band-playing.jpg" alt="Killer Cats from Outer Space performing" />
-        </section>
-        <section>
+    <main class="container mt-4">
+        <div class="col-md-12 position-relative">
+            <img src="~/images/guitar.png" alt="Electric Guitar" class="spinning-guitar left">
+            <img src="~/images/guitar.png" alt="Electric Guitar" class="spinning-guitar right">
+            <section class="jumbotron text-center">
+                <h1 class="display-4">@Model.BandName</h1>
+                <p class="lead">@Model.BandDescription</p>
+            </section>
+        </div>
+        <div class="main-content">
+            <div class="text-center">
+                <img src="~/images/band-playing.jpeg" alt="Band Playing" class="img-fluid band-photo">
+            </div>
+            <div>
+                <section class="events-section">
+                    <h2>Upcoming Events</h2>
+                    <ul class="list-group">
+                        @foreach (var evt in Model.UpcomingEvents)
+                        {
+                            <li class="list-group-item">
+                                <strong>Date:</strong> @evt.Date <br>
+                                <strong>Location:</strong> <a href="https://www.google.com/maps/search/?api=1&query=@evt.Location" target="_blank">@evt.Location</a> <br>
+                                <strong>Description:</strong> @evt.Description
+                            </li>
+                        }
+                    </ul>
+                </section>
+            </div>
+        </div>
+        <section id="about" class="about-section">
             <h2>About the Band</h2>
-            <p>Join us for an unforgettable experience with Killer Cats from Outer Space!</p>
+            <div class="row">
+                @foreach (var member in Model.BandMembers)
+                {
+                    <div class="col-md-4 mb-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">@member.Name</h5>
+                                <h6 class="card-subtitle mb-2 text-muted">@member.Instrument</h6>
+                                <p class="card-text">@member.Description</p>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
         </section>
     </main>
-    <footer>
-        <p>&copy; 2023 Killer Cats from Outer Space. All rights reserved.</p>
-    </footer>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

@@ -1,34 +1,57 @@
+@page
+@model KillerCatsFromOuterSpace.Pages.EventsModel
+@{
+    ViewData["Title"] = "Events";
+}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Killer Cats from Outer Space - Events</title>
+    <title>@ViewData["Title"]</title>
     <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <style>
+        .events-section {
+            background-color: #f8f9fa;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 8px;
+        }
+        .events-section h1 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+        .container {
+            max-width: 960px;
+        }
+        .home-button {
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <h1>Upcoming Events</h1>
+    <header class="jumbotron text-center bg-dark text-white">
+        <h1 class="display-4">Upcoming Events</h1>
     </header>
-    <main>
-        <section>
-            <h2>Join us for our next shows!</h2>
-            <ul>
-                <li>
-                    <strong>Event 1:</strong> Date and Time - Venue
-                </li>
-                <li>
-                    <strong>Event 2:</strong> Date and Time - Venue
-                </li>
-                <li>
-                    <strong>Event 3:</strong> Date and Time - Venue
-                </li>
-                <!-- Add more events as needed -->
+    <main class="container">
+        <section class="events-section">
+            <h1>Upcoming Events</h1>
+            <p>Join us for our upcoming events in San Antonio, TX. Click on the location to view it on Google Maps.</p>
+            <ul class="list-group">
+                @foreach (var evt in Model.UpcomingEvents)
+                {
+                    <li class="list-group-item">
+                        <strong>Date:</strong> @evt.Date <br>
+                        <strong>Location:</strong> <a href="https://www.google.com/maps/search/?api=1&query=@evt.Location" target="_blank">@evt.Location</a> <br>
+                        <strong>Description:</strong> @evt.Description
+                    </li>
+                }
             </ul>
         </section>
     </main>
-    <footer>
-        <p>&copy; 2023 Killer Cats from Outer Space. All rights reserved.</p>
-    </footer>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
