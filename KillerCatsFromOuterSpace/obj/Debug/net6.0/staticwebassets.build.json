@@ -1,0 +1,77 @@
+{
+  "Version": 1,
+  "Hash": "fKQXkLWypjSK2saxJ50U0pKlRsXHZ2HpQrohbLtzOVU=",
+  "Source": "KillerCatsFromOuterSpace",
+  "BasePath": "_content/KillerCatsFromOuterSpace",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "KillerCatsFromOuterSpace/wwwroot",
+      "Source": "KillerCatsFromOuterSpace",
+      "ContentRoot": "/workspaces/killercats_website/KillerCatsFromOuterSpace/wwwroot/",
+      "BasePath": "_content/KillerCatsFromOuterSpace",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "/workspaces/killercats_website/KillerCatsFromOuterSpace/wwwroot/css/site.css",
+      "SourceId": "KillerCatsFromOuterSpace",
+      "SourceType": "Discovered",
+      "ContentRoot": "/workspaces/killercats_website/KillerCatsFromOuterSpace/wwwroot/",
+      "BasePath": "_content/KillerCatsFromOuterSpace",
+      "RelativePath": "css/site.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/css/site.css"
+    },
+    {
+      "Identity": "/workspaces/killercats_website/KillerCatsFromOuterSpace/wwwroot/images/band-playing.jpg",
+      "SourceId": "KillerCatsFromOuterSpace",
+      "SourceType": "Discovered",
+      "ContentRoot": "/workspaces/killercats_website/KillerCatsFromOuterSpace/wwwroot/",
+      "BasePath": "_content/KillerCatsFromOuterSpace",
+      "RelativePath": "images/band-playing.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/images/band-playing.jpg"
+    },
+    {
+      "Identity": "/workspaces/killercats_website/KillerCatsFromOuterSpace/wwwroot/js/site.js",
+      "SourceId": "KillerCatsFromOuterSpace",
+      "SourceType": "Discovered",
+      "ContentRoot": "/workspaces/killercats_website/KillerCatsFromOuterSpace/wwwroot/",
+      "BasePath": "_content/KillerCatsFromOuterSpace",
+      "RelativePath": "js/site.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/js/site.js"
+    }
+  ]
+}
