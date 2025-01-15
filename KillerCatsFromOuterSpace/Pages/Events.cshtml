@@ -32,19 +32,21 @@
 </head>
 <body>
     <header class="jumbotron text-center bg-dark text-white">
-        <h1 class="display-4">Upcoming Events</h1>
+        <h1 class="display-4">All Events</h1>
     </header>
     <main class="container">
         <section class="events-section">
-            <h1>Upcoming Events</h1>
-            <p>Join us for our upcoming events in San Antonio, TX. Click on the location to view it on Google Maps.</p>
+            <h1>Upcoming Events throughout the year</h1>
+            <p>Join us for our upcoming events in various locations. Click on the location to view it on Google Maps.</p>
             <ul class="list-group">
                 @foreach (var evt in Model.UpcomingEvents)
                 {
                     <li class="list-group-item">
-                        <strong>Date:</strong> @evt.Date <br>
-                        <strong>Location:</strong> <a href="https://www.google.com/maps/search/?api=1&query=@evt.Location" target="_blank">@evt.Location</a> <br>
-                        <strong>Description:</strong> @evt.Description
+                        <div class="event-details">
+                            <p><strong>Date:</strong> @evt.Date</p>
+                            <p><strong>Location:</strong> <a href="https://www.google.com/maps/search/?api=1&query=@evt.Location" target="_blank">@evt.Location</a></p>
+                            <p><strong>Description:</strong> @evt.Description</p>
+                        </div>
                     </li>
                 }
             </ul>

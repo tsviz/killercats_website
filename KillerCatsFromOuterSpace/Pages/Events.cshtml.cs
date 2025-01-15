@@ -11,36 +11,24 @@ namespace KillerCatsFromOuterSpace.Pages
 
         public void OnGet()
         {
-            UpcomingEvents = GenerateUpcomingEvents();
+            var today = DateTime.Today;
+            var events = new List<Event>();
+
+            AddEvent(events, today.AddDays(15), "The Aztec Theatre", "Live performance");
+            AddEvent(events, today.AddMonths(1).AddDays(20), "San Antonio River Walk", "Outdoor concert");
+            AddEvent(events, today.AddMonths(2).AddDays(5), "The Majestic Theatre", "Holiday special");
+
+            UpcomingEvents = events;
         }
 
-        private List<Event> GenerateUpcomingEvents()
+        private void AddEvent(List<Event> events, DateTime date, string location, string description)
         {
-            var events = new List<Event>();
-            var today = DateTime.Today;
-
             events.Add(new Event
             {
-                Date = today.AddDays(15).ToString("MM-dd-yyyy"),
-                Location = "The Aztec Theatre",
-                Description = "Live performance"
+                Date = date.ToString("MM-dd-yyyy"),
+                Location = location,
+                Description = description
             });
-
-            events.Add(new Event
-            {
-                Date = today.AddMonths(1).AddDays(20).ToString("MM-dd-yyyy"),
-                Location = "San Antonio River Walk",
-                Description = "Outdoor concert"
-            });
-
-            events.Add(new Event
-            {
-                Date = today.AddMonths(2).AddDays(5).ToString("MM-dd-yyyy"),
-                Location = "The Majestic Theatre",
-                Description = "Holiday special"
-            });
-
-            return events;
         }
     }
 }

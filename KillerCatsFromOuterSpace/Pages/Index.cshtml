@@ -2,6 +2,7 @@
 @model KillerCatsFromOuterSpace.Pages.IndexModel
 @{
     ViewData["Title"] = "Home";
+    var latestEvents = Model.UpcomingEvents.Take(2);
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -11,83 +12,64 @@
     <title>Home Page</title>
     <link rel="stylesheet" href="~/css/site.css" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
     <style>
         .events-section {
-            background-color: #f8f9fa;
-            padding: 20px;
-            margin-top: 20px;
+            background-color: rgba(248, 249, 250, 0.9);
+            padding: 30px;
+            margin: 40px auto;
             border-radius: 8px;
+            max-width: 800px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            position: relative;
+            z-index: 1;
         }
-        .events-section h2 {
-            font-size: 2rem;
-            margin-bottom: 20px;
+
+        .background-wrapper {
+            position: relative;
+            min-height: 500px;
+            overflow: hidden;
         }
-        .band-photo {
-            max-width: 100%;
-            height: auto;
-            margin-bottom: 20px;
+
+        .background-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
         }
-        .jumbotron {
-            padding: 2rem 1rem;
-        }
-        .container {
-            max-width: 960px;
-        }
-        .main-content {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .main-content > div {
-            flex: 1;
-            margin: 10px;
-        }
-        .about-section {
-            background-color: #e9ecef;
-            padding: 20px;
-            margin-top: 20px;
-            border-radius: 8px;
-        }
-        .about-section h2 {
-            font-size: 2rem;
-            margin-bottom: 20px;
-        }
-        .about-section ul {
-            list-style: none;
-            padding: 0;
-        }
-        .about-section li {
-            display: flex;
-            align-items: center;
-            margin-bottom: 10px;
-        }
-        .about-section li i {
-            font-size: 1.5rem;
-            margin-right: 10px;
+
+        .background-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.3;
         }
     </style>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
 </head>
 <body>
-    <main class="container mt-4">
-        <div class="col-md-12 position-relative">
-            <img src="~/images/guitar.png" alt="Electric Guitar" class="spinning-guitar left">
-            <img src="~/images/guitar.png" alt="Electric Guitar" class="spinning-guitar right">
-            <section class="jumbotron text-center">
-                <h1 class="display-4">@Model.BandName</h1>
-                <p class="lead">@Model.BandDescription</p>
-            </section>
-        </div>
-        <div class="main-content">
-            <div class="text-center">
-                <img src="~/images/band-playing.jpeg" alt="Band Playing" class="img-fluid band-photo">
+    <main class="container-fluid px-4">
+        <div class="row">
+            <div class="col-12 position-relative">
+                <img src="~/images/guitar.png" alt="Electric Guitar" class="spinning-guitar left">
+                <img src="~/images/guitar.png" alt="Electric Guitar" class="spinning-guitar right">
+                <section class="jumbotron text-center">
+                    <h1 class="display-4">@Model.BandName</h1>
+                    <p class="lead">@Model.BandDescription</p>
+                </section>
             </div>
-            <div>
+        </div>
+
+        <div class="position-relative background-wrapper">
+            <div class="background-image">
+                <img src="~/images/band-playing.jpeg" alt="Band Playing">
+            </div>
+            <div class="main-content">
                 <section class="events-section">
                     <h2>Upcoming Events</h2>
                     <ul class="list-group">
-                        @foreach (var evt in Model.UpcomingEvents)
+                        @foreach (var evt in latestEvents)
                         {
                             <li class="list-group-item">
                                 <strong>Date:</strong> @evt.Date <br>
@@ -120,5 +102,6 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
