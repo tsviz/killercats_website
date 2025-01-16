@@ -73,7 +73,7 @@
                         {
                             <li class="list-group-item">
                                 <strong>Date:</strong> @evt.Date <br>
-                                <strong>Location:</strong> <a href="https://www.google.com/maps/search/?api=1&query=@evt.Location" target="_blank">@evt.Location</a> <br>
+                                <strong>Location:</strong> <a href="javascript:void(0);" onclick="openMap('@evt.Location')">@evt.Location</a> <br>
                                 <strong>Description:</strong> @evt.Description
                             </li>
                         }
@@ -99,6 +99,20 @@
             </div>
         </section>
     </main>
+    <script>
+        function openMap(location) {
+            var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+            // Check if the user is on an iPhone or iPad
+            if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+                // Redirect to Apple Maps
+                window.location.href = "https://maps.apple.com/?q=" + encodeURIComponent(location);
+            } else {
+                // Redirect to Google Maps
+                window.location.href = "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(location);
+            }
+        }
+    </script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
