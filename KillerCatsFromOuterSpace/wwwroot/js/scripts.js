@@ -18,6 +18,43 @@ function openMap(location) {
     }
 }
 
+// Define submitEventRequest immediately on window object
+window.submitEventRequest = function() {
+    const date = document.getElementById('eventDate').value;
+    const details = document.getElementById('eventDetails').value;
+    // Check if date and details are not empty
+    if (date && details) {
+        // Create a FormData object
+        const formData = new FormData();
+        formData.append('eventDate', date);
+        formData.append('eventDetails', details);
+
+        // Send the form data to the server
+        fetch('/Home/SubmitEventRequest', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => {
+            if (response.ok) {
+                // Handle successful submission
+                alert('Event request submitted successfully!');
+                // Optionally clear the form
+                document.getElementById('eventDate').value = '';
+                document.getElementById('eventDetails').value = '';
+            } else {
+                // Handle errors
+                alert('Failed to submit event request.');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('An error occurred while submitting the request.');
+        });
+    } else {
+        alert('Please fill in both the date and details fields.');
+    }
+};
+
 document.addEventListener('DOMContentLoaded', function () {
     var toggleButtons = document.querySelectorAll('.toggle-info');
 
@@ -49,4 +86,169 @@ document.addEventListener('DOMContentLoaded', function () {
         // Initial state
         updateButtonState(false);
     });
+
+    const today = new Date().toISOString().split('T')[0];
+    const dateInput = document.getElementById('eventDate');
+    if (dateInput) {
+        dateInput.setAttribute('min', today);
+    }
+
+    // Add event listener for the submit button
+    const submitButton = document.getElementById('submitEventBtn');
+    let hasShownWarning = false;
+
+    // Remove any existing event listeners
+    submitButton.replaceWith(submitButton.cloneNode(true));
+    const newSubmitButton = document.getElementById('submitEventBtn');
+
+    newSubmitButton.addEventListener('click', function (e) {
+        e.preventDefault();
+        
+        const eventDate = document.getElementById('eventDate').value;
+        const eventDetails = document.getElementById('eventDetails').value;
+
+        if (!eventDate) {
+            alert('Please fill in the date field.');
+            return;
+        }
+
+        if (!eventDetails) {
+            alert('Please fill in the Additional Details field.');
+            return;
+        }
+
+        // Reset warning flag when form is valid
+        hasShownWarning = false;
+
+        // Format date to mm-dd-yyyy
+        const [year, month, day] = eventDate.split('-');
+        const formattedDate = `${month}-${day}-${year}`;
+
+        const subject = encodeURIComponent(`Event Schedule Request - ${formattedDate}`);
+        const body = encodeURIComponent(`Event Date: ${formattedDate}\n\nEvent Details: ${eventDetails}`);
+        const mailtoLink = `mailto:killercats@outerspace.com?subject=${subject}&body=${body}`;
+        
+        // Open mailto link
+        window.location.href = mailtoLink;
+
+        // Properly close modal and reset page state
+        $('#scheduleModal').modal('hide');
+        $('body').removeClass('modal-open');
+        $('.modal-backdrop').remove();
+
+        // Clear form fields
+        document.getElementById('eventDate').value = '';
+        document.getElementById('eventDetails').value = '';
+
+        // Reload the page to reset state
+        setTimeout(() => {
+            window.location.reload();
+        }, 1000);
+    });
+
+    // Reset warning flag when modal is closed
+    $('#scheduleModal').on('hidden.bs.modal', function () {
+        hasShownWarning = false;
+    });
+
+    // Debug: Check if button exists
+    console.log('Initial button check:', submitButton);
+
+    if (!submitButton) {
+        console.error('Submit button not found in DOM');
+        return;
+    }
+
+    submitButton.addEventListener('click', function(e) {
+        console.log('Button clicked!');
+        e.preventDefault();
+
+        // Debug: Check form elements
+        const eventDate = document.getElementById('eventDate');
+        const eventDetails = document.getElementById('eventDetails');
+        
+        console.log('Form elements:', {
+            dateElement: eventDate,
+            detailsElement: eventDetails
+        });
+
+        if (!eventDate || !eventDetails) {
+            console.error('Form elements not found');
+            return;
+        }
+
+        const dateValue = eventDate.value;
+        const detailsValue = eventDetails.value;
+
+        console.log('Form values:', {
+            date: dateValue,
+            details: detailsValue
+        });
+
+        if (!dateValue || !detailsValue) {
+            alert('Please fill in both the date and details fields.');
+            return;
+        }
+
+        // Create and open mailto link
+        const subject = encodeURIComponent('Event Schedule Request');
+        const body = encodeURIComponent(`Event Date: ${dateValue}\n\nEvent Details: ${detailsValue}`);
+        const mailtoLink = `mailto:killercats@outerspace.com?subject=${subject}&body=${body}`;
+
+        window.location.href = mailtoLink;
+
+        // Properly close modal and reset page state
+        $('#scheduleModal').modal('hide');
+        $('body').removeClass('modal-open');
+        $('.modal-backdrop').remove();
+
+        // Clear form fields
+        eventDate.value = '';
+        eventDetails.value = '';
+
+        // Reload the page to reset state
+        setTimeout(() => {
+            window.location.reload();
+        }, 1000);
+    });
+
+    // Audio Player Setup
+    const initAudioPlayer = () => {
+        const audio = document.getElementById('audio-player');
+        const playButton = document.querySelector('.play-button');
+        
+        if (audio && playButton) {
+            window.togglePlay = function() {
+                if (audio.paused) {
+                    audio.play();
+                    playButton.textContent = '⏸';
+                } else {
+                    audio.pause();
+                    playButton.textContent = '▶';
+                }
+            };
+            
+            window.setVolume = function(volume) {
+                audio.volume = volume;
+            };
+        }
+    };
+
+    // Initialize audio player
+    initAudioPlayer();
+
+    // Restore audio state after page reload
+    const savedTime = localStorage.getItem('audioTime');
+    const wasPlaying = localStorage.getItem('audioPlaying') === 'true';
+    
+    if (savedTime) {
+        const audio = document.getElementById('audio-player');
+        audio.currentTime = savedTime;
+        if (wasPlaying) {
+            audio.play();
+            document.querySelector('.play-button').textContent = '⏸';
+        }
+        localStorage.removeItem('audioTime');
+        localStorage.removeItem('audioPlaying');
+    }
 });

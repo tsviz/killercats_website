@@ -25,6 +25,47 @@ img {
 }
 
 .container {
+    max-width: 960px;
+}
+
+.home-button {
+    margin-top: 20px;
+}
+
+.events-section {
+    background-color: rgba(248, 249, 250, 0.9);
+    padding: 30px;
+    margin: 40px auto;
+    border-radius: 8px;
+    max-width: 800px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    position: relative;
+    z-index: 1;
+}
+
+.background-wrapper {
+    position: relative;
+    min-height: 500px;
+    overflow: hidden;
+}
+
+.background-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+.background-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.3;
+}
+
+.container {
     width: 80%;
     margin: auto;
     overflow: hidden;
@@ -70,24 +111,47 @@ img {
 }
 
 .fixed-audio-player {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    z-index: 1000;
-    background: linear-gradient(45deg, #000000, #2c2c2c);
-    padding: 15px 25px;
-    border-radius: 10px;
-    box-shadow: 0 0 20px rgba(255, 0, 0, 0.3);
-    border: 2px solid #ff0000;
-    transform: skew(-5deg);
+    position: fixed !important;
+    bottom: 0 !important;
+    right: 0 !important;
+    width: auto !important;
+    max-width: 300px !important;
+    background: rgba(33, 37, 41, 0.95);
+    padding: 8px 15px !important;
+    border-radius: 15px 0 0 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    z-index: 1000 !important;
 }
 
 .fixed-audio-player audio {
     width: 250px;
     height: 40px;
+}
+
+.fixed-audio-player .player-logo {
+    font-size: 0.8rem !important;
+    margin-right: 10px !important;
+}
+
+.fixed-audio-player .small-text {
+    font-size: 0.6rem !important;
+}
+
+.fixed-audio-player .custom-controls {
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+}
+
+.fixed-audio-player .volume-slider {
+    width: 60px !important;
+}
+
+.fixed-audio-player .play-button {
+    padding: 5px 10px !important;
+    font-size: 0.8rem !important;
 }
 
 .custom-controls {
@@ -222,6 +286,11 @@ img {
     .spinning-guitar {
         display: block;
     }
+
+    .fixed-audio-player {
+        max-width: 250px !important;
+        padding: 5px 10px !important;
+    }
 }
 
 @media (max-width: 576px) {
@@ -246,4 +315,48 @@ img {
 }
 .event-details a:hover {
     text-decoration: underline;
+}
+
+.schedule-button {
+    position: fixed !important;
+    top: 50% !important;
+    right: 15px !important;
+    transform: translateY(-50%) !important;
+    z-index: 9999 !important;
+}
+
+.schedule-button .btn {
+    border-radius: 50% !important;
+    width: 50px !important;
+    height: 50px !important;
+    padding: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background: #007bff;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+    border: none;
+}
+
+.schedule-button .btn:hover {
+    transform: scale(1.1);
+    background: #0056b3;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+.schedule-button .fas {
+    margin: 0;
+    font-size: 1.2rem;
+}
+
+@media (max-width: 768px) {
+    .schedule-button .btn {
+        width: 40px !important;
+        height: 40px !important;
+    }
+    
+    .schedule-button .fas {
+        font-size: 1rem;
+    }
 }

@@ -6,7 +6,7 @@
     <title>@ViewData["Title"] - Killer Cats from Outer Space</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
-     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -30,6 +30,41 @@
             </ul>
         </div>
     </nav>
+
+    <!-- Move floating schedule button to top-right corner -->
+    <div class="schedule-button">
+        <button type="button" class="btn btn-primary rounded-pill shadow-lg" data-toggle="modal" data-target="#scheduleModal">
+            <i class="fas fa-calendar-plus"></i>
+        </button>
+    </div>
+
+    <!-- Schedule Event Modal -->
+    <div class="modal fade" id="scheduleModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Schedule an Event</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="scheduleForm">
+                        <div class="form-group">
+                            <label for="eventDate">Event Date</label>
+                            <input type="date" class="form-control" id="eventDate" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="eventDetails">Additional Details</label>
+                            <textarea class="form-control" id="eventDetails" rows="4" 
+                                placeholder="Please provide venue details, expected attendance, and any special requirements..."></textarea>
+                        </div>
+                    </form>
+                    <button type="button" class="btn btn-primary" id="submitEventBtn">Submit Request</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div class="fixed-audio-player">
         <div class="player-logo">
@@ -61,6 +96,23 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+    console.log('Layout loaded');
+    document.addEventListener('DOMContentLoaded', () => {
+    console.log('DOM loaded');
+    });
+    </script>
+    <script src="~/js/scripts.js"></script>
+    <script>
+        // Verify scripts.js loaded
+        console.log('Layout complete - checking if scripts.js loaded');
+        if (typeof submitEventRequest === 'undefined') {
+            console.error('scripts.js did not load properly');
+        } else {
+            console.log('scripts.js loaded successfully');
+        }
+    </script>
+    
     @await RenderSectionAsync("Scripts", required: false)
     <script>
         const audio = document.getElementById('audio-player');
