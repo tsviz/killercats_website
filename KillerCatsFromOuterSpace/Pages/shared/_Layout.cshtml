@@ -34,9 +34,23 @@
     <!-- Secondary Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light secondary-nav">
         <div class="container-fluid">
-            <ul class="navbar-nav me-auto">
+            <ul class="navbar-nav me-auto d-flex align-items-center">
                 <li class="nav-item">
                     <a class="nav-link" href="#about">About Us</a>
+                </li>
+                <li class="nav-item">
+                    <div class="boombox-player">
+                        <div class="boombox-controls">
+                            <button class="boombox-play" onclick="togglePlay()" title="Play/Pause">
+                                <i class="fas fa-play"></i>
+                            </button>
+                            <input type="range" class="boombox-volume" min="0" max="1" step="0.1" value="1" 
+                                   oninput="setVolume(this.value)">
+                        </div>
+                        <audio id="audio-player" loop>
+                            <source src="~/audio/hard-rock-audio.mp3" type="audio/mpeg">
+                        </audio>
+                    </div>
                 </li>
             </ul>
             <ul class="navbar-nav contact-info">
