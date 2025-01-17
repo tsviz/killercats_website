@@ -31,21 +31,95 @@
         </div>
     </nav>
 
+    <!-- Secondary Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light secondary-nav">
+        <div class="container-fluid">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#about">About Us</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav contact-info">
+                <li class="nav-item">
+                    <a class="nav-link" href="mailto:info@killercats.com">
+                        <i class="fas fa-envelope"></i> info@killercats.com
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="tel:+1234567890">
+                        <i class="fas fa-phone"></i> (123) 456-7890
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
     <!-- Move floating schedule button to top-right corner -->
     <div class="schedule-button">
-        <button type="button" class="btn btn-primary rounded-pill shadow-lg" data-toggle="modal" data-target="#scheduleModal">
+        <button type="button" 
+                class="btn btn-primary rounded-pill shadow-lg" 
+                data-toggle="modal" 
+                data-target="#scheduleModal"
+                title="Schedule an Event">
             <i class="fas fa-calendar-plus"></i>
         </button>
     </div>
 
+    <div class="store-button">
+        <a href="https://www.ebay.com/placeholder-store" 
+           target="_blank"
+           class="btn btn-primary rounded-pill shadow-lg"
+           title="Visit our Store">
+            <i class="fas fa-shopping-cart"></i>
+        </a>
+    </div>
+
+    <div class="social-buttons">
+        <div class="social-button">
+            <a href="https://facebook.com/placeholder" 
+               target="_blank"
+               class="btn facebook-btn"
+               title="Follow us on Facebook">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+        </div>
+        
+        <div class="social-button">
+            <a href="https://instagram.com/placeholder" 
+               target="_blank"
+               class="btn instagram-btn"
+               title="Follow us on Instagram">
+                <i class="fab fa-instagram"></i>
+            </a>
+        </div>
+        
+        <div class="social-button">
+            <a href="https://tiktok.com/placeholder" 
+               target="_blank"
+               class="btn tiktok-btn"
+               title="Follow us on TikTok">
+                <i class="fab fa-tiktok"></i>
+            </a>
+        </div>
+        
+        <div class="social-button">
+            <a href="https://twitter.com/placeholder" 
+               target="_blank"
+               class="btn twitter-btn"
+               title="Follow us on Twitter">
+                <i class="fab fa-twitter"></i>
+            </a>
+        </div>
+    </div>
+
     <!-- Schedule Event Modal -->
-    <div class="modal fade" id="scheduleModal" tabindex="-1">
-        <div class="modal-dialog">
+    <div class="modal fade" id="scheduleModal" tabindex="-1" role="dialog" aria-labelledby="scheduleModalTitle">
+        <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Schedule an Event</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
+                    <h5 class="modal-title" id="scheduleModalTitle">Schedule an Event</h5>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span>&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">

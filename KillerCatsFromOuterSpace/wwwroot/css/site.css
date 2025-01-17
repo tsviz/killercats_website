@@ -360,3 +360,131 @@ img {
         font-size: 1rem;
     }
 }
+
+.store-button {
+    position: fixed !important;
+    top: calc(50% + 60px) !important;
+    right: 15px !important;
+    transform: translateY(-50%) !important;
+    z-index: 9999 !important;
+}
+
+.store-button .btn {
+    border-radius: 50% !important;
+    width: 50px !important;
+    height: 50px !important;
+    padding: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background: #28a745;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+    border: none;
+}
+
+.store-button .btn:hover {
+    transform: scale(1.1);
+    background: #218838;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+.store-button .fas {
+    margin: 0;
+    font-size: 1.2rem;
+}
+
+@media (max-width: 768px) {
+    .store-button .btn {
+        width: 40px !important;
+        height: 40px !important;
+    }
+    
+    .store-button .fas {
+        font-size: 1rem;
+    }
+}
+
+.social-buttons {
+    position: fixed !important;
+    top: calc(50% + 120px) !important;
+    right: 15px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 10px !important;
+    z-index: 9999 !important;
+}
+
+.social-button .btn {
+    border-radius: 50% !important;
+    width: 50px !important;
+    height: 50px !important;
+    padding: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+    border: none;
+    color: white !important;
+}
+
+.social-button .btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+.social-button .fas, .social-button .fab {
+    margin: 0;
+    font-size: 1.2rem;
+}
+
+.facebook-btn { background: #1877f2 !important; }
+.facebook-btn:hover { background: #1559b8 !important; }
+
+.instagram-btn { 
+    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%) !important;
+}
+.instagram-btn:hover { opacity: 0.9 !important; }
+
+.tiktok-btn { background: #000000 !important; }
+.tiktok-btn:hover { background: #333333 !important; }
+
+.twitter-btn { background: #1da1f2 !important; }
+.twitter-btn:hover { background: #0d8bd9 !important; }
+
+@media (max-width: 768px) {
+    .social-button .btn {
+        width: 40px !important;
+        height: 40px !important;
+    }
+    
+    .social-button .fas, .social-button .fab {
+        font-size: 1rem;
+    }
+}
+
+.secondary-nav {
+    border-bottom: 1px solid #dee2e6;
+    padding: 0.5rem 1rem;
+}
+
+.secondary-nav .nav-link {
+    color: #6c757d !important;
+    font-size: 0.9rem;
+}
+
+.secondary-nav .nav-link:hover {
+    color: #343a40 !important;
+}
+
+.contact-info .nav-link i {
+    margin-right: 5px;
+}
+
+@media (max-width: 768px) {
+    .contact-info {
+        flex-direction: column;
+        align-items: flex-end;
+    }
+}
