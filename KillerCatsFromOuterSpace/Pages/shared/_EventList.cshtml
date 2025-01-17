@@ -1,0 +1,26 @@
+@model IEnumerable<KillerCatsFromOuterSpace.Models.Event>
+
+<ul class="list-group">
+    @foreach (var evt in Model)
+    {
+        <li class="list-group-item">
+            <div class="event-details">
+                <p><strong>Date:</strong> @evt.Date.ToString("MMMM dd, yyyy")</p>
+                <p><strong>Location:</strong> <a href="javascript:void(0);" onclick="openMap('@evt.Location')">@evt.Location</a></p>
+                <p><strong>Description:</strong> @evt.Description</p>
+                <button class="btn btn-primary toggle-info" type="button" data-toggle="collapse" data-target="#collapse-@evt.Id" aria-expanded="false" aria-controls="collapse-@evt.Id" data-toggle-text="Less Info">
+                    More Info
+                </button>
+                <div class="collapse mt-3" id="collapse-@evt.Id">
+                    <div class="card card-body">
+                        <div class="embed-responsive embed-responsive-16by9 mb-3">
+                            <iframe class="embed-responsive-item" src="https://www.google.com/maps?q=@evt.Location&output=embed" allowfullscreen></iframe>
+                        </div>
+                        <p><strong>Additional Information:</strong></p>
+                        <p>@evt.Description</p>
+                    </div>
+                </div>
+            </div>
+        </li>
+    }
+</ul>

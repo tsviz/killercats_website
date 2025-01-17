@@ -1,3 +1,6 @@
+@import url('https://example.com/styles1.css');
+@import url('https://example.com/styles2.css');
+
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
@@ -153,8 +156,6 @@ img {
     50% { transform: scaleY(0.3); }
     100% { transform: scaleY(1); }
 }
-
-@import url('https://fonts.googleapis.com/css2?family=Metal+Mania&display=swap');
 
 .player-logo {
     display: flex;
