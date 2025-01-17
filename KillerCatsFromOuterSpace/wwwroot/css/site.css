@@ -453,6 +453,13 @@ img {
 .twitter-btn { background: #1da1f2 !important; }
 .twitter-btn:hover { background: #0d8bd9 !important; }
 
+.youtube-btn { 
+    background: #FF0000 !important; 
+}
+.youtube-btn:hover { 
+    background: #CC0000 !important; 
+}
+
 @media (max-width: 768px) {
     .social-button .btn {
         width: 40px !important;
