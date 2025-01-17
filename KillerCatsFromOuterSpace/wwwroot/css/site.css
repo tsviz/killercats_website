@@ -1,20 +1,25 @@
 @import url('https://example.com/styles1.css');
 @import url('https://example.com/styles2.css');
 @import url('https://fonts.googleapis.com/css2?family=Metal+Mania&family=Permanent+Marker&family=Roboto+Condensed:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rock+Salt&family=Metal+Mania&family=Permanent+Marker&display=swap');
 
+/* General Styling */
 body {
-    font-family: 'Roboto Condensed', sans-serif !important;
+    background-color: #0d0d0d;
+    color: #e0e0e0;
+    font-family: 'Roboto Condensed', sans-serif;
     font-weight: 400 !important;
-    background-color: #f4f4f4;
     margin: 0;
     padding: 0;
 }
 
+/* Header Styling */
 header {
-    background: #333;
-    color: #fff;
-    padding: 10px 0;
+    background: #1a1a1a;
+    color: #ff0000;
+    padding: 20px 0;
     text-align: center;
+    border-bottom: 2px solid #ff0000;
 }
 
 h1, h2, h3, .navbar-brand {
@@ -85,12 +90,12 @@ img {
     padding: 0;
 }
 
+/* Event List Styling */
 .event-list li {
-    background: #fff;
-    margin: 10px 0;
-    padding: 10px;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    background: #222;
+    color: #ff0000;
+    border: 1px solid #ff0000;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
 }
 
 @keyframes spin {
@@ -102,13 +107,14 @@ img {
     }
 }
 
+/* Spinning Guitar Styling */
 .spinning-guitar {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    width: 50px;
+    width: 70px;
     height: auto;
-    animation: spin 4s linear infinite;
+    animation: spin 6s linear infinite;
 }
 
 .spinning-guitar.left {
@@ -558,11 +564,22 @@ img {
     }
 }
 
-/* Navigation */
+/* Navigation Styling */
+.navbar {
+    background: #1a1a1a;
+    border-bottom: 2px solid #ff0000;
+}
+
 .nav-link {
     font-family: 'Permanent Marker', cursive !important;
-    font-size: 1.1rem !important;
+    font-size: 1.2rem !important;
     text-transform: uppercase !important;
+    color: #ff0000 !important;
+}
+
+.nav-link:hover {
+    color: #fff !important;
+    text-shadow: 0 0 10px #ff0000;
 }
 
 /* Display Headers */
@@ -606,5 +623,78 @@ img {
     
     .nav-link {
         font-size: 1rem !important;
+    }
+}
+
+.killer-cats-title {
+    font-family: 'Metal Mania', cursive;
+    font-size: 4rem;
+    color: #ff0000;
+    text-shadow: 3px 3px 6px #000;
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Jumbotron Styling */
+.jumbotron {
+    background: url('~/images/grunge-texture.jpg') no-repeat center center;
+    background-size: cover;
+    color: #ff0000;
+    text-shadow: 2px 2px 4px #000;
+    padding: 50px 20px;
+    border-bottom: 2px solid #ff0000;
+}
+
+.card {
+    background: #333;
+    color: #ff0000;
+    border: 1px solid #ff0000;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+.card-title {
+    font-family: 'Rock Salt', cursive;
+}
+
+.card-subtitle {
+    color: #e0e0e0;
+}
+
+.card-text {
+    color: #e0e0e0;
+}
+
+/* Button Styling */
+.btn-primary {
+    background-color: #ff0000;
+    border-color: #ff0000;
+    font-family: 'Permanent Marker', cursive;
+}
+
+.btn-primary:hover {
+    background-color: #cc0000;
+    border-color: #cc0000;
+}
+
+/* Footer Styling */
+footer {
+    background: #1a1a1a;
+    color: #ff0000;
+    padding: 20px 0;
+    text-align: center;
+    border-top: 2px solid #ff0000;
+}
+
+@media (max-width: 768px) {
+    .killer-cats-title {
+        font-size: 2.5rem;
+    }
+    
+    .jumbotron {
+        padding: 20px 10px;
+    }
+    
+    .card {
+        margin-bottom: 20px;
     }
 }
