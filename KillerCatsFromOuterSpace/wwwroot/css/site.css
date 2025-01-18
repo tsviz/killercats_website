@@ -5,7 +5,13 @@
 
 /* General Styling */
 body {
-    background-color: #0d0d0d;
+    background: linear-gradient(to bottom, #000000, #1a0f1f);
+    background-image: 
+        radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 40px),
+        radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 30px),
+        radial-gradient(white, rgba(255,255,255,.1) 2px, transparent 40px);
+    background-size: 550px 550px, 350px 350px, 250px 250px;
+    animation: space-float 30s linear infinite;
     color: #e0e0e0;
     font-family: 'Roboto Condensed', sans-serif;
     font-weight: 400 !important;
@@ -27,6 +33,10 @@ h1, h2, h3, .navbar-brand {
     text-transform: uppercase !important;
     letter-spacing: 2px !important;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3) !important;
+    background: linear-gradient(to bottom, #fff 0%, #888 50%, #000 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 2px 2px 4px rgba(255, 0, 0, 0.5);
 }
 
 h1 {
@@ -47,14 +57,18 @@ img {
 }
 
 .events-section {
-    background-color: rgba(248, 249, 250, 0.9);
+    background-color: rgba(0, 0, 0, 0.8);
     padding: 30px;
     margin: 40px auto;
     border-radius: 8px;
     max-width: 800px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.5);
     position: relative;
     z-index: 1;
+    border: 3px solid transparent;
+    background: linear-gradient(45deg, #ff0000, #ff8c00, #ff0000);
+    background-size: 200% 200%;
+    animation: gradientBorder 3s ease infinite;
 }
 
 .background-wrapper {
@@ -96,6 +110,13 @@ img {
     color: #ff0000;
     border: 1px solid #ff0000;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.event-list li::before {
+    content: '🎸';
+    margin-right: 10px;
+    transform: rotate(45deg);
+    display: inline-block;
 }
 
 @keyframes spin {
@@ -335,22 +356,22 @@ img {
 }
 
 .schedule-button {
-    position: fixed !important;
-    top: 50% !important;
-    right: 15px !important;
-    transform: translateY(-50%) !important;
-    z-index: 9999 !important;
+    position: fixed;
+    top: 50%;
+    right: 15px;
+    transform: translateY(-50%);
+    z-index: 9999;
 }
 
 .schedule-button .btn {
-    border-radius: 50% !important;
-    width: 50px !important;
-    height: 50px !important;
-    padding: 0 !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    background: #007bff;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #ff0000;
     box-shadow: 0 2px 10px rgba(0,0,0,0.2);
     transition: all 0.3s ease;
     border: none;
@@ -358,7 +379,7 @@ img {
 
 .schedule-button .btn:hover {
     transform: scale(1.1);
-    background: #0056b3;
+    background: #cc0000;
     box-shadow: 0 4px 15px rgba(0,0,0,0.3);
 }
 
@@ -379,21 +400,21 @@ img {
 }
 
 .store-button {
-    position: fixed !important;
-    top: calc(50% + 60px) !important;
-    right: 15px !important;
-    transform: translateY(-50%) !important;
-    z-index: 9999 !important;
+    position: fixed;
+    top: calc(50% + 60px);
+    right: 15px;
+    transform: translateY(-50%);
+    z-index: 9999;
 }
 
 .store-button .btn {
-    border-radius: 50% !important;
-    width: 50px !important;
-    height: 50px !important;
-    padding: 0 !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background: #28a745;
     box-shadow: 0 2px 10px rgba(0,0,0,0.2);
     transition: all 0.3s ease;
@@ -423,27 +444,27 @@ img {
 }
 
 .social-buttons {
-    position: fixed !important;
-    top: calc(50% + 120px) !important;
-    right: 15px !important;
-    display: flex !important;
-    flex-direction: column !important;
-    gap: 10px !important;
-    z-index: 9999 !important;
+    position: fixed;
+    top: calc(50% + 120px);
+    right: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 9999;
 }
 
 .social-button .btn {
-    border-radius: 50% !important;
-    width: 50px !important;
-    height: 50px !important;
-    padding: 0 !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     box-shadow: 0 2px 10px rgba(0,0,0,0.2);
     transition: all 0.3s ease;
     border: none;
-    color: white !important;
+    color: white;
 }
 
 .social-button .btn:hover {
@@ -451,30 +472,58 @@ img {
     box-shadow: 0 4px 15px rgba(0,0,0,0.3);
 }
 
+.social-button .btn:hover::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, #ff0 0%, transparent 70%);
+    animation: catEyes 2s infinite;
+}
+
 .social-button .fas, .social-button .fab {
     margin: 0;
     font-size: 1.2rem;
 }
 
-.facebook-btn { background: #1877f2 !important; }
-.facebook-btn:hover { background: #1559b8 !important; }
+.facebook-btn { 
+    background: #1877f2 !important; 
+    box-shadow: 0 0 10px #1877f2 !important;
+}
+.facebook-btn:hover { 
+    background: #1877f2 !important; 
+}
 
 .instagram-btn { 
-    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%) !important;
+    background: #E4405F !important;
+    box-shadow: 0 0 10px #E4405F !important;
 }
-.instagram-btn:hover { opacity: 0.9 !important; }
+.instagram-btn:hover { 
+    background: #E4405F !important;
+}
 
-.tiktok-btn { background: #000000 !important; }
-.tiktok-btn:hover { background: #333333 !important; }
+.tiktok-btn { 
+    background: #000000 !important;
+    box-shadow: 0 0 10px #000000 !important;
+}
+.tiktok-btn:hover { 
+    background: #000000 !important;
+}
 
-.twitter-btn { background: #1da1f2 !important; }
-.twitter-btn:hover { background: #0d8bd9 !important; }
+.twitter-btn { 
+    background: #1DA1F2 !important;
+    box-shadow: 0 0 10px #1DA1F2 !important;
+}
+.twitter-btn:hover { 
+    background: #1DA1F2 !important;
+}
 
 .youtube-btn { 
-    background: #FF0000 !important; 
+    background: #CC0000 !important;
+    box-shadow: 0 0 10px #FF0000 !important;
 }
 .youtube-btn:hover { 
-    background: #CC0000 !important; 
+    background: #CC0000 !important;
 }
 
 @media (max-width: 768px) {
@@ -486,6 +535,66 @@ img {
     .social-button .fas, .social-button .fab {
         font-size: 1rem;
     }
+}
+
+.social-button .facebook-btn { 
+    background-color: #1877f2 !important; 
+    opacity: 1 !important;
+    box-shadow: 0 0 10px #1877f2 !important;
+}
+
+.social-button .facebook-btn:hover { 
+    background-color: #1877f2 !important;
+    opacity: 1 !important;
+}
+
+.social-button .instagram-btn { 
+    background-color: #E4405F !important;
+    opacity: 1 !important;
+    box-shadow: 0 0 10px #E4405F !important;
+}
+
+.social-button .instagram-btn:hover { 
+    background-color: #E4405F !important;
+    opacity: 1 !important;
+}
+
+.social-button .tiktok-btn { 
+    background-color: #000000 !important;
+    opacity: 1 !important;
+    box-shadow: 0 0 10px #000000 !important;
+}
+
+.social-button .tiktok-btn:hover { 
+    background-color: #000000 !important;
+    opacity: 1 !important;
+}
+
+.btn.facebook-btn {
+    background-color: #1877f2 !important;
+    box-shadow: 0 0 10px #1877f2 !important;
+}
+
+.btn.facebook-btn:hover {
+    background-color: #1877f2 !important;
+}
+
+.btn.instagram-btn {
+    background-color: #E4405F !important;
+    box-shadow: 0 0 10px #E4405F !important;
+}
+
+.btn.instagram-btn:hover {
+    background-color: #E4405F !important;
+}
+
+.btn.tiktok-btn {
+    background-color: #000000 !important;
+    box-shadow: 0 0 10px #000000 !important;
+}
+
+.btn.tiktok-btn:hover {
+    background-color: #000000 !important;
 }
 
 .secondary-nav {
@@ -580,6 +689,12 @@ img {
 .nav-link:hover {
     color: #fff !important;
     text-shadow: 0 0 10px #ff0000;
+    animation: lightning 1.5s ease-in-out;
+    text-shadow: 
+        0 0 5px #fff,
+        0 0 10px #fff,
+        0 0 20px #ff0,
+        0 0 40px #ff0;
 }
 
 /* Display Headers */
@@ -648,8 +763,12 @@ img {
 .card {
     background: #333;
     color: #ff0000;
-    border: 1px solid #ff0000;
+    border: 2px solid #ff0000;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    clip-path: polygon(
+        0% 5%, 5% 0%, 95% 0%, 100% 5%,
+        100% 95%, 95% 100%, 5% 100%, 0% 95%
+    );
 }
 
 .card-title {
@@ -698,3 +817,40 @@ footer {
         margin-bottom: 20px;
     }
 }
+
+@keyframes gradientBorder {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes lightning {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+@keyframes space-float {
+    from { background-position: 0 0; }
+    to { background-position: -500px 500px; }
+}
+
+@keyframes catEyes {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
+}
+
+/* Add plasma effect to social buttons */
+/* .social-buttons .btn {
+    background: radial-gradient(circle at center, 
+        rgba(255,255,255,0.8) 0%,
+        rgba(255,0,0,0.8) 60%,
+        rgba(128,0,0,1) 100%
+    ) !important;
+    box-shadow: 
+        0 0 10px rgba(255,0,0,0.5),
+        0 0 20px rgba(255,0,0,0.3),
+        0 0 30px rgba(255,0,0,0.1),
+        0 0 10px rgba(255,255,255,0.5),
+        0 0 20px rgba(255,255,255,0.3),
+        0 0 30px rgba(255,255,255,0.1);
+} */
