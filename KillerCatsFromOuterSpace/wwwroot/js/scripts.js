@@ -250,49 +250,51 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 document.addEventListener('DOMContentLoaded', function() {
-    try {
-        // Check storage availability
-        if (typeof localStorage !== 'undefined') {
-            console.log('Local storage is available');
-        }
+    const submitButton = document.getElementById('submitEventBtn');
+    let hasShownWarning = false;
 
-        // Initialize form handling
-        const submitButton = document.getElementById('submitEventBtn');
-        let hasShownWarning = false;
+    if (submitButton) {
+        submitButton.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            const eventDate = document.getElementById('eventDate');
+            const eventDetails = document.getElementById('eventDetails');
+            
+            if (!eventDate || !eventDetails) return;
 
-        if (submitButton) {
-            submitButton.addEventListener('click', function(e) {
-                e.preventDefault();
-                const eventDate = document.getElementById('eventDate');
-                const eventDetails = document.getElementById('eventDetails');
-                
-                if (!eventDate || !eventDetails) return;
+            const dateValue = eventDate.value;
+            const detailsValue = eventDetails.value;
 
-                const dateValue = eventDate.value;
-                const detailsValue = eventDetails.value;
-
-                if (!dateValue || !detailsValue) {
-                    if (!hasShownWarning) {
-                        alert('Please fill in both fields');
-                        hasShownWarning = true;
-                    }
-                    return;
+            if (!dateValue || !detailsValue) {
+                if (!hasShownWarning) {
+                    alert('Please fill in both the date and details fields.');
+                    hasShownWarning = true;
                 }
+                return;
+            }
 
-                const subject = encodeURIComponent('Event Schedule Request');
-                const body = encodeURIComponent(`Event Date: ${dateValue}\n\nDetails: ${detailsValue}`);
-                const mailtoLink = `mailto:killercats@outerspace.com?subject=${subject}&body=${body}`;
+            // If we get here, both fields are filled
+            const subject = encodeURIComponent('Event Schedule Request');
+            const body = encodeURIComponent(`Event Date: ${dateValue}\n\nEvent Details: ${detailsValue}`);
+            const mailtoLink = `mailto:killercats@outerspace.com?subject=${subject}&body=${body}`;
 
-                window.location.href = mailtoLink;
-                $('#scheduleModal').modal('hide');
-                
-                // Clear form without page reload
-                eventDate.value = '';
-                eventDetails.value = '';
-                hasShownWarning = false;
-            });
-        }
-    } catch (error) {
-        console.error('Script initialization error:', error);
+            window.location.href = mailtoLink;
+            
+            $('#scheduleModal').modal('hide');
+            $('body').removeClass('modal-open');
+            $('.modal-backdrop').remove();
+            
+            // Clear form fields
+            eventDate.value = '';
+            eventDetails.value = '';
+            
+            // Reset warning flag
+            hasShownWarning = false;
+        });
     }
+
+    // Reset warning flag when modal is closed
+    $('#scheduleModal').on('hidden.bs.modal', function () {
+        hasShownWarning = false;
+    });
 });
