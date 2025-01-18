@@ -10,24 +10,26 @@
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="/Index#about" onclick="playCatAnimation()">Killer Cats</a>
-        <audio id="catSound" src="/sounds/cat-meow.mp3" preload="auto"></audio>
-        <img id="preloadedCatImage" src="/images/animated-cat.gif" style="display: none;" />
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="/">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/Events">Events</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/Index#about">About the Band</a>
-                </li>
-            </ul>
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/Index#about" onclick="playCatAnimation()">Killer Cats</a>
+            <audio id="catSound" src="/sounds/cat-meow.mp3" preload="auto"></audio>
+            <img id="preloadedCatImage" src="/images/animated-cat.gif" style="display: none;" />
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Events">Events</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Index#about">About the Band</a>
+                    </li>
+                </ul>
+            </div>
         </div>
     </nav>
 
@@ -52,7 +54,45 @@
                         </audio>
                     </div>
                 </li>
+                <li class="nav-item store-nav-item">
+                    <a href="https://www.ebay.com/placeholder-store" 
+                       target="_blank"
+                       class="store-link"
+                       title="Visit our Store">
+                        <i class="fas fa-shopping-cart"></i>
+                        Merch Store
+                    </a>
+                </li>
             </ul>
+            
+            <div class="social-buttons">
+                <div class="social-button">
+                    <a href="https://facebook.com/placeholder" target="_blank" class="btn facebook-btn" title="Facebook">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                </div>
+                <div class="social-button">
+                    <a href="https://instagram.com/placeholder" target="_blank" class="btn instagram-btn" title="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                </div>
+                <div class="social-button">
+                    <a href="https://tiktok.com/placeholder" target="_blank" class="btn tiktok-btn" title="TikTok">
+                        <i class="fab fa-tiktok"></i>
+                    </a>
+                </div>
+                <div class="social-button">
+                    <a href="https://twitter.com/placeholder" target="_blank" class="btn twitter-btn" title="Twitter">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                </div>
+                <div class="social-button">
+                    <a href="https://youtube.com/placeholder" target="_blank" class="btn youtube-btn" title="YouTube">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                </div>
+            </div>
+            
             <ul class="navbar-nav contact-info">
                 <li class="nav-item">
                     <a class="nav-link" href="mailto:info@killercats.com">
@@ -77,62 +117,6 @@
                 title="Schedule an Event">
             <i class="fas fa-calendar-plus"></i>
         </button>
-    </div>
-
-    <div class="store-button">
-        <a href="https://www.ebay.com/placeholder-store" 
-           target="_blank"
-           class="btn btn-primary rounded-pill shadow-lg"
-           title="Visit our Store">
-            <i class="fas fa-shopping-cart"></i>
-        </a>
-    </div>
-
-    <div class="social-buttons">
-        <div class="social-button">
-            <a href="https://facebook.com/placeholder" 
-               target="_blank"
-               class="btn facebook-btn"
-               title="Follow us on Facebook">
-                <i class="fab fa-facebook-f"></i>
-            </a>
-        </div>
-        
-        <div class="social-button">
-            <a href="https://instagram.com/placeholder" 
-               target="_blank"
-               class="btn instagram-btn"
-               title="Follow us on Instagram">
-                <i class="fab fa-instagram"></i>
-            </a>
-        </div>
-        
-        <div class="social-button">
-            <a href="https://tiktok.com/placeholder" 
-               target="_blank"
-               class="btn tiktok-btn"
-               title="Follow us on TikTok">
-                <i class="fab fa-tiktok"></i>
-            </a>
-        </div>
-        
-        <div class="social-button">
-            <a href="https://twitter.com/placeholder" 
-               target="_blank"
-               class="btn twitter-btn"
-               title="Follow us on Twitter">
-                <i class="fab fa-twitter"></i>
-            </a>
-        </div>
-        
-        <div class="social-button">
-            <a href="https://youtube.com/placeholder" 
-               target="_blank"
-               class="btn youtube-btn"
-               title="Subscribe to our YouTube">
-                <i class="fab fa-youtube"></i>
-            </a>
-        </div>
     </div>
 
     <!-- Schedule Event Modal -->
@@ -194,19 +178,15 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
-    console.log('Layout loaded');
     document.addEventListener('DOMContentLoaded', () => {
-    console.log('DOM loaded');
     });
     </script>
     <script src="~/js/scripts.js"></script>
     <script>
-        // Verify scripts.js loaded
-        console.log('Layout complete - checking if scripts.js loaded');
         if (typeof submitEventRequest === 'undefined') {
             console.error('scripts.js did not load properly');
         } else {
-            console.log('scripts.js loaded successfully');
+            // console.log('scripts.js loaded successfully');
         }
     </script>
     
@@ -235,7 +215,6 @@
     <script>
         function playCatAnimation() {
             event.preventDefault();
-            console.log("playCatAnimation called");
             var catSound = document.getElementById("catSound");
             catSound.play();
 

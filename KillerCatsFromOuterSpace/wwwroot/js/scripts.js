@@ -151,16 +151,12 @@ document.addEventListener('DOMContentLoaded', function () {
         hasShownWarning = false;
     });
 
-    // Debug: Check if button exists
-    console.log('Initial button check:', submitButton);
-
     if (!submitButton) {
         console.error('Submit button not found in DOM');
         return;
     }
 
     submitButton.addEventListener('click', function(e) {
-        console.log('Button clicked!');
         e.preventDefault();
 
         // Debug: Check form elements
@@ -250,5 +246,53 @@ document.addEventListener('DOMContentLoaded', function () {
         }
         localStorage.removeItem('audioTime');
         localStorage.removeItem('audioPlaying');
+    }
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    try {
+        // Check storage availability
+        if (typeof localStorage !== 'undefined') {
+            console.log('Local storage is available');
+        }
+
+        // Initialize form handling
+        const submitButton = document.getElementById('submitEventBtn');
+        let hasShownWarning = false;
+
+        if (submitButton) {
+            submitButton.addEventListener('click', function(e) {
+                e.preventDefault();
+                const eventDate = document.getElementById('eventDate');
+                const eventDetails = document.getElementById('eventDetails');
+                
+                if (!eventDate || !eventDetails) return;
+
+                const dateValue = eventDate.value;
+                const detailsValue = eventDetails.value;
+
+                if (!dateValue || !detailsValue) {
+                    if (!hasShownWarning) {
+                        alert('Please fill in both fields');
+                        hasShownWarning = true;
+                    }
+                    return;
+                }
+
+                const subject = encodeURIComponent('Event Schedule Request');
+                const body = encodeURIComponent(`Event Date: ${dateValue}\n\nDetails: ${detailsValue}`);
+                const mailtoLink = `mailto:killercats@outerspace.com?subject=${subject}&body=${body}`;
+
+                window.location.href = mailtoLink;
+                $('#scheduleModal').modal('hide');
+                
+                // Clear form without page reload
+                eventDate.value = '';
+                eventDetails.value = '';
+                hasShownWarning = false;
+            });
+        }
+    } catch (error) {
+        console.error('Script initialization error:', error);
     }
 });

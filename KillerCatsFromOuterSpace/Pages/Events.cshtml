@@ -18,7 +18,16 @@
     </header>
     <main class="container">
         <section class="events-section">
-            <h1>Upcoming Events throughout the year</h1>
+            <div class="section-header d-flex justify-content-between align-items-center">
+                <h2>Upcoming Events throughout the year</h2>
+                <button type="button" 
+                        class="btn btn-primary rounded-pill" 
+                        data-toggle="modal" 
+                        data-target="#scheduleModal"
+                        title="Schedule an Event">
+                    <i class="fas fa-calendar-plus"></i> Schedule Event
+                </button>
+            </div>
             <p>Join us for our upcoming events in various locations. Click on the location to view it on Google Maps.</p>
             @await Html.PartialAsync("_EventList", Model.UpcomingEvents)
         </section>
