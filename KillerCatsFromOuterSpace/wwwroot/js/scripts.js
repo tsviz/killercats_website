@@ -5,33 +5,38 @@ let score = 0;
 let scoreDisplay = null;
 
 function initCatGame() {
-    if (!cat) {
-        // Create cat but initially hidden
-        cat = document.createElement('div');
-        cat.className = 'floating-cat';
-        cat.innerHTML = '🐱';
-        cat.style.display = 'none';
-        document.body.appendChild(cat);
-        
-        // Create score display
-        scoreDisplay = document.createElement('div');
-        scoreDisplay.id = 'score';
-        scoreDisplay.className = 'score-display';
-        scoreDisplay.style.display = 'none';
-        scoreDisplay.textContent = `Score: ${score}`;
-        document.body.appendChild(scoreDisplay);
-
-        // Add click handler
-        cat.addEventListener('click', () => {
-            if (gameActive) {
-                score++;
-                scoreDisplay.textContent = `Score: ${score}`;
-                cat.classList.add('caught');
-                setTimeout(() => cat.classList.remove('caught'), 500);
-                updateCatPosition();
-            }
-        });
+    // Clear previous game if exists
+    if (cat) {
+        cat.remove();
+        scoreDisplay.remove();
+        clearInterval(catInterval);
+        cat = null;
+        scoreDisplay = null;
     }
+
+    // Create new game elements
+    cat = document.createElement('div');
+    cat.className = 'floating-cat';
+    cat.innerHTML = '🐱';
+    cat.style.display = 'none';
+    document.body.appendChild(cat);
+    
+    scoreDisplay = document.createElement('div');
+    scoreDisplay.id = 'score';
+    scoreDisplay.className = 'score-display';
+    scoreDisplay.style.display = 'none';
+    scoreDisplay.textContent = `Score: ${score}`;
+    document.body.appendChild(scoreDisplay);
+
+    cat.addEventListener('click', () => {
+        if (gameActive) {
+            score++;
+            scoreDisplay.textContent = `Score: ${score}`;
+            cat.classList.add('caught');
+            setTimeout(() => cat.classList.remove('caught'), 500);
+            updateCatPosition();
+        }
+    });
     
     toggleGame();
 }
