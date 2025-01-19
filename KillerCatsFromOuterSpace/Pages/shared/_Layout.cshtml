@@ -11,7 +11,7 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="/Index#about" onclick="playCatAnimation()">Killer Cats</a>
+            <a class="navbar-brand" onclick="initCatGame()">Killer Cats</a>
             <audio id="catSound" src="/sounds/cat-meow.mp3" preload="auto"></audio>
             <img id="preloadedCatImage" src="/images/animated-cat.gif" style="display: none;" />
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
@@ -168,6 +168,10 @@
         </div>
     </div>
 
+    <div class="score-display">
+        Score: <span id="score">0</span>
+    </div>
+
     @RenderBody()
 
     <footer class="bg-dark text-white text-center py-3">
@@ -252,6 +256,9 @@
                 document.body.removeChild(catImage);
             }, 4100); // Adjust the timeout duration to match the animation length
         }
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', initCatGame);
     </script>
 </body>
 </html>

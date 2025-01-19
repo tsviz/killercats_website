@@ -834,6 +834,11 @@ img {
     }
 }
 
+.navbar-brand {
+    cursor: pointer;
+    transition: text-shadow 0.3s ease;
+}
+
 /* Display Headers */
 .display-4 {
     font-family: 'Metal Mania', cursive !important;
@@ -1019,4 +1024,39 @@ footer {
     .store-nav-item {
         margin: 10px 0 !important;
     }
+}
+
+.floating-cat {
+    position: fixed;
+    font-size: 3rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 1000;
+    user-select: none;
+    filter: drop-shadow(0 0 10px #ff0000);
+}
+
+.floating-cat:hover {
+    transform: scale(1.2);
+}
+
+.floating-cat.caught {
+    animation: catch 0.5s ease;
+}
+
+@keyframes catch {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.5); opacity: 0.5; }
+    100% { transform: scale(1); }
+}
+
+.score-display {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: rgba(0,0,0,0.8);
+    color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    z-index: 1000;
 }

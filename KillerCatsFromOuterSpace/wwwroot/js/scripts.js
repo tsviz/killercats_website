@@ -1,3 +1,64 @@
+let gameActive = false;
+let cat = null;
+let catInterval = null;
+let score = 0;
+let scoreDisplay = null;
+
+function initCatGame() {
+    if (!cat) {
+        // Create cat but initially hidden
+        cat = document.createElement('div');
+        cat.className = 'floating-cat';
+        cat.innerHTML = '🐱';
+        cat.style.display = 'none';
+        document.body.appendChild(cat);
+        
+        // Create score display
+        scoreDisplay = document.createElement('div');
+        scoreDisplay.id = 'score';
+        scoreDisplay.className = 'score-display';
+        scoreDisplay.style.display = 'none';
+        scoreDisplay.textContent = `Score: ${score}`;
+        document.body.appendChild(scoreDisplay);
+
+        // Add click handler
+        cat.addEventListener('click', () => {
+            if (gameActive) {
+                score++;
+                scoreDisplay.textContent = `Score: ${score}`;
+                cat.classList.add('caught');
+                setTimeout(() => cat.classList.remove('caught'), 500);
+                updateCatPosition();
+            }
+        });
+    }
+    
+    toggleGame();
+}
+
+function toggleGame() {
+    gameActive = !gameActive;
+    
+    if (gameActive) {
+        cat.style.display = 'block';
+        scoreDisplay.style.display = 'block';
+        updateCatPosition();
+        catInterval = setInterval(updateCatPosition, 2000);
+    } else {
+        cat.style.display = 'none';
+        scoreDisplay.style.display = 'none';
+        clearInterval(catInterval);
+    }
+}
+
+function updateCatPosition() {
+    if (!cat) return;
+    const maxX = window.innerWidth - 50;
+    const maxY = window.innerHeight - 50;
+    cat.style.left = `${Math.random() * maxX}px`;
+    cat.style.top = `${Math.random() * maxY}px`;
+}
+
 function openMap(location) {
     var userAgent = navigator.userAgent || navigator.vendor || window.opera;
 
