@@ -1060,3 +1060,58 @@ footer {
     border-radius: 5px;
     z-index: 1000;
 }
+
+.game-toggle {
+    transition: all 0.3s ease;
+}
+
+.game-toggle.active {
+    background-color: #dc3545;
+    border-color: #dc3545;
+}
+
+.game-toggle.active .game-text:after {
+    content: ' (Stop)';
+}
+
+.dropdown-menu-dark {
+    background: linear-gradient(145deg, #8b0000, #580000) !important;
+    border: 2px solid #ff0000;
+    box-shadow: 0 4px 12px rgba(255,0,0,0.2);
+}
+
+.dropdown-menu-dark .dropdown-item {
+    font-family: 'Metal Mania', cursive;
+    color: #ffcccc !important;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    padding: 12px 20px;
+    background: linear-gradient(90deg, transparent 0%, transparent 100%);
+    transition: all 0.3s ease;
+    text-shadow: 
+        2px 2px 2px #000,
+        -1px -1px 0 #660000;
+}
+
+.dropdown-menu-dark .dropdown-item:hover {
+    background: linear-gradient(90deg, #ff0000 0%, #cc0000 100%);
+    color: #ffffff !important;
+    transform: scale(1.05);
+    text-shadow: 
+        0 0 5px #ff0000,
+        0 0 10px #ff0000;
+}
+
+.dropdown-menu-dark .dropdown-divider {
+    border-color: #ff3333;
+    box-shadow: 0 0 5px #ff0000;
+    margin: 8px 0;
+}
+
+.dropdown-menu-dark .dropdown-item i {
+    margin-right: 12px;
+    color: #ff3333;
+    text-shadow: 0 0 5px #ff0000;
+}

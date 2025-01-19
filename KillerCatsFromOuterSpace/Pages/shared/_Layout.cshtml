@@ -7,14 +7,33 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <!-- Add Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
-            <a class="navbar-brand" onclick="initCatGame()">Killer Cats</a>
+            <div class="dropdown">
+                <a class="navbar-brand dropdown-toggle" href="#" role="button" id="bandDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                    Killer Cats <i class="fas fa-meteor ms-2"></i>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="bandDropdown">
+                    <li><a class="dropdown-item" href="#latest-music">Latest Music</a></li>
+                    <li><a class="dropdown-item" href="#tour-dates">Tour Dates</a></li>
+                    <li><a class="dropdown-item" href="#merch">Merch Store</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="#newsletter">Join Newsletter</a></li>
+                </ul>
+            </div>
+            <button class="btn btn-outline-light ms-2 game-toggle" onclick="initCatGame()">
+                <i class="fas fa-cat"></i> 
+                <span class="game-text">Catch the Cat!</span>
+            </button>
             <audio id="catSound" src="/sounds/cat-meow.mp3" preload="auto"></audio>
             <img id="preloadedCatImage" src="/images/animated-cat.gif" style="display: none;" />
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+            <button class="navbar-toggler" 
+                    type="button" data-toggle="collapse" 
+                    data-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
@@ -168,10 +187,6 @@
         </div>
     </div>
 
-    <div class="score-display">
-        Score: <span id="score">0</span>
-    </div>
-
     @RenderBody()
 
     <footer class="bg-dark text-white text-center py-3">
@@ -179,13 +194,12 @@
     </footer>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script>
-    document.addEventListener('DOMContentLoaded', () => {
-    });
-    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
     <script src="~/js/scripts.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+        });
+    </script>
     <script>
         if (typeof submitEventRequest === 'undefined') {
             console.error('scripts.js did not load properly');
