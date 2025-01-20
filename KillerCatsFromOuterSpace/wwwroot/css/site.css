@@ -1299,48 +1299,81 @@ footer {
 }
 
 .game-toggle {
-    background-color: #000;
+    background-color: #000 !important;
     border: 2px solid #fff;
     -webkit-tap-highlight-color: transparent;
-    transition: all 0.3s ease;
+    transition: none;
 }
 
 .game-toggle .fas.fa-cat::before {
-    color: #fff;
-    transition: color 0.3s ease;
+    color: #fff !important;
+    transition: none;
 }
 
 .game-toggle.active {
-    background-color: #fff;
+    background-color: #fff !important;
     border-color: #000;
 }
 
 .game-toggle.active .fas.fa-cat::before {
-    color: #000;
+    color: #000 !important;
 }
 
+/* Mobile specific overrides */
 @media (hover: none) {
+    .game-toggle {
+        -webkit-tap-highlight-color: transparent;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        user-select: none;
+        touch-action: manipulation;
+    }
+
+    /* Force initial state */
+    .game-toggle:not(.active) {
+        background-color: #000 !important;
+    }
+
+    .game-toggle:not(.active) .fas.fa-cat::before {
+        color: #fff !important;
+    }
+
+    /* Remove all hover/active states */
+    .game-toggle:hover,
+    .game-toggle:active,
+    .game-toggle:focus {
+        background-color: inherit !important;
+    }
+}
+
+/* Specific mobile touch handling */
+@media (hover: none) {
+    .game-toggle {
+        -webkit-tap-highlight-color: transparent;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        user-select: none;
+    }
+
+    /* Remove hover effects completely for touch devices */
     .game-toggle:hover,
     .game-toggle:active,
     .game-toggle:focus {
         background-color: #000 !important;
-    }
-
-    .game-toggle:hover .fas.fa-cat::before,
-    .game-toggle:active .fas.fa-cat::before,
-    .game-toggle:focus .fas.fa-cat::before {
         color: #fff !important;
     }
 
-    .game-toggle.active:hover,
-    .game-toggle.active:active,
-    .game-toggle.active:focus {
+    .game-toggle.active {
         background-color: #fff !important;
     }
 
-    .game-toggle.active:hover .fas.fa-cat::before,
-    .game-toggle.active:active .fas.fa-cat::before,
-    .game-toggle.active:focus .fas.fa-cat::before {
+    /* Force white cat in black background when game ends */
+    .game-toggle:not(.active) .fas.fa-cat::before {
+        color: #fff !important;
+    }
+
+    /* Force black cat in white background during game */
+    .game-toggle.active .fas.fa-cat::before {
         color: #000 !important;
     }
 }
