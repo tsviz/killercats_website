@@ -1297,3 +1297,17 @@ footer {
     z-index: 999;
     pointer-events: auto;
 }
+
+.game-toggle {
+    background-color: #fff;
+    color: #000;
+    border: 2px solid #000;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.game-toggle.active {
+    background-color: #000;
+    color: #fff;
+}

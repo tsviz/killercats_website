@@ -120,15 +120,26 @@ window.CatGame = {
         gameButton.classList.remove('active');
         this.state.cat.style.display = 'none';
         this.state.clickableArea.style.display = 'none';
-        this.state.scoreDisplay.style.display = 'none';
+        
+        // Show final score without blocking alert
+        this.state.scoreDisplay.textContent = `Game Over! Final Score: ${this.state.score}`;
+        this.state.scoreDisplay.style.display = 'block';
+        
         clearInterval(this.state.interval);
         clearTimeout(this.state.inactivityTimeout);
-        clearTimeout(this.state.gameTimer); // Clear game timer
-        clearInterval(this.state.speedInterval); // Clear speed interval
+        clearTimeout(this.state.gameTimer);
+        clearInterval(this.state.speedInterval);
+        
         this.state.active = false;
-        alert(`Game Over! Final Score: ${this.state.score}`); // Show final score before resetting
-        this.state.score = 0; // Reset score
-        this.state.scoreDisplay.textContent = `Score: ${this.state.score}`; // Update score display
+        
+        // Reset game state after showing score
+        setTimeout(() => {
+            this.state.score = 0;
+            this.state.scoreDisplay.style.display = 'none';
+            this.state.scoreDisplay.textContent = `Score: ${this.state.score}`;
+            // Force button state update
+            gameButton.blur();
+        }, 3000);
     },
 
     updateCatPosition() {
