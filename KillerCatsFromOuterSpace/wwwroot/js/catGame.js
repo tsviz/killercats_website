@@ -8,7 +8,8 @@ window.CatGame = {
         inactivityTimeout: null,
         audioPlayer: null,
         gameTimer: null,
-        speedFactor: 1 // Add speed factor
+        speedFactor: 1, // Add speed factor
+        clickableArea: null // Add clickable area
     },
 
     resetInactivityTimer() {
@@ -27,10 +28,12 @@ window.CatGame = {
         if (this.state.cat) {
             this.state.cat.remove();
             this.state.scoreDisplay.remove();
+            this.state.clickableArea.remove();
             clearInterval(this.state.interval);
             clearTimeout(this.state.gameTimer); // Clear game timer
             this.state.cat = null;
             this.state.scoreDisplay = null;
+            this.state.clickableArea = null;
         }
 
         // Create new game elements
@@ -39,6 +42,11 @@ window.CatGame = {
         this.state.cat.innerHTML = '🐱';
         this.state.cat.style.display = 'none';
         document.body.appendChild(this.state.cat);
+
+        this.state.clickableArea = document.createElement('div');
+        this.state.clickableArea.className = 'clickable-area';
+        this.state.clickableArea.style.display = 'none';
+        document.body.appendChild(this.state.clickableArea);
         
         this.state.scoreDisplay = document.createElement('div');
         this.state.scoreDisplay.id = 'score';
@@ -46,13 +54,28 @@ window.CatGame = {
         this.state.scoreDisplay.style.display = 'none';
         this.state.scoreDisplay.textContent = `Score: ${this.state.score}`;
         document.body.appendChild(this.state.scoreDisplay);
-
+        
         this.state.cat.addEventListener('click', () => {
             if (this.state.active) {
                 this.state.score++;
                 this.state.scoreDisplay.textContent = `Score: ${this.state.score}`;
-                this.state.cat.classList.add('caught');
-                setTimeout(() => this.state.cat.classList.remove('caught'), 500);
+                this.state.cat.innerHTML = '😾'; // Change to angry cat
+                setTimeout(() => {
+                    this.state.cat.innerHTML = '🐱'; // Revert back to normal cat
+                }, 1000); // Change back after 1 second
+                this.updateCatPosition();
+                this.resetInactivityTimer(); // Reset timer on click
+            }
+        });
+
+        this.state.clickableArea.addEventListener('click', () => {
+            if (this.state.active) {
+                this.state.score++;
+                this.state.scoreDisplay.textContent = `Score: ${this.state.score}`;
+                this.state.cat.innerHTML = '😾'; // Change to angry cat
+                setTimeout(() => {
+                    this.state.cat.innerHTML = '🐱'; // Revert back to normal cat
+                }, 1000); // Change back after 1 second
                 this.updateCatPosition();
                 this.resetInactivityTimer(); // Reset timer on click
             }
@@ -69,6 +92,7 @@ window.CatGame = {
             gameButton.classList.add('active');
             // Show game elements
             this.state.cat.style.display = 'block';
+            this.state.clickableArea.style.display = 'block';
             this.state.scoreDisplay.style.display = 'block';
             this.updateCatPosition();
             this.state.speedFactor = 1; // Reset speed factor
@@ -95,6 +119,7 @@ window.CatGame = {
         const gameButton = document.querySelector('.game-toggle');
         gameButton.classList.remove('active');
         this.state.cat.style.display = 'none';
+        this.state.clickableArea.style.display = 'none';
         this.state.scoreDisplay.style.display = 'none';
         clearInterval(this.state.interval);
         clearTimeout(this.state.inactivityTimeout);
@@ -110,8 +135,22 @@ window.CatGame = {
         if (!this.state.cat) return;
         const maxX = window.innerWidth - 50;
         const maxY = window.innerHeight - 50;
-        this.state.cat.style.left = `${Math.random() * maxX}px`;
-        this.state.cat.style.top = `${Math.random() * maxY}px`;
+        const newX = Math.random() * maxX;
+        const newY = Math.random() * maxY;
+        this.state.cat.style.left = `${newX}px`;
+        this.state.cat.style.top = `${newY}px`;
+
+        // Update clickable area position and size
+        this.state.clickableArea.style.left = `${newX - 25}px`;
+        this.state.clickableArea.style.top = `${newY - 25}px`;
+        this.state.clickableArea.style.width = '100px';
+        this.state.clickableArea.style.height = '100px';
+        this.state.clickableArea.style.display = 'block';
+
+        // Hide clickable area after 1 second
+        setTimeout(() => {
+            this.state.clickableArea.style.display = 'none';
+        }, 1000);
     },
 
     initAudioPlayer() {

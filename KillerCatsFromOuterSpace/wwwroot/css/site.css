@@ -7,17 +7,28 @@
 body {
     background: linear-gradient(to bottom, #1a0f1f, #000000);
     background-image: 
+        radial-gradient(circle at 20% 20%, #444, #000 70%),
+        radial-gradient(circle at 80% 30%, #555, #000 70%),
+        radial-gradient(circle at 50% 80%, #666, #000 70%),
         radial-gradient(#8b0000, rgba(139,0,0,.2) 2px, transparent 40px),
         radial-gradient(#8b0000, rgba(139,0,0,.15) 1px, transparent 30px),
         radial-gradient(#8b0000, rgba(139,0,0,.1) 2px, transparent 40px);
-    background-size: 550px 550px, 350px 350px, 250px 250px;
-    animation: space-float 30s linear infinite;
+    background-size: 200px 200px, 250px 250px, 300px 300px, 550px 550px, 350px 350px, 250px 250px;
+    background-position: top left, top right, bottom left, center, center, center;
+    animation: space-float 30s linear infinite, asteroid-move 10s linear infinite;
     color: #ff0000;
     font-family: 'Roboto Condensed', sans-serif;
     font-weight: 400 !important;
     margin: 0;
     padding: 0;
 }
+
+/* Asteroid Animation */
+@keyframes asteroid-move {
+    0% { background-position: top left, top right, bottom left, center, center, center; }
+    100% { background-position: bottom right, bottom left, top right, center, center, center; }
+}
+
 /* Header Styling */
 header {
     background: linear-gradient(145deg, #8b0000, #580000);
@@ -890,6 +901,24 @@ img {
     transition: text-shadow 0.3s ease;
 }
 
+/* Navbar Styling */
+.navbar {
+    background: linear-gradient(145deg, #8b0000, #580000);
+    border-bottom: 2px solid #ff0000;
+    padding: 15px 30px !important;
+    color: #ff0000;
+}
+
+.navbar .navbar-brand {
+    font-family: 'Metal Mania', cursive;
+    font-size: 1.5rem;
+    color: #ff0000 !important;
+}
+
+.navbar .navbar-brand:hover {
+    color: #ffffff !important;
+}
+
 /* Display Headers */
 .display-4 {
     font-family: 'Metal Mania', cursive !important;
@@ -1087,7 +1116,7 @@ footer {
 
 .floating-cat {
     position: fixed;
-    font-size: 3rem;
+    font-size: 50px;
     cursor: pointer;
     transition: all 0.3s ease;
     z-index: 1000;
@@ -1101,6 +1130,16 @@ footer {
 
 .floating-cat.caught {
     animation: catch 0.5s ease;
+}
+
+.angry-cat {
+    content: '😾';
+    font-size: 50px;
+}
+
+.angry-cat::before {
+    content: '😾';
+    font-size: 50px;
 }
 
 @keyframes catch {
@@ -1175,6 +1214,22 @@ footer {
     text-shadow: 0 0 5px #ff0000;
 }
 
+/* Dropdown Menu Styling */
+.dropdown-menu-dark {
+    background: linear-gradient(145deg, #8b0000, #580000) !important;
+    border: 2px solid #ff0000;
+    box-shadow: 0 4px 12px rgba(255,0,0,0.2);
+}
+
+.dropdown-item {
+    color: #ff0000 !important;
+}
+
+.dropdown-item:hover {
+    background: #580000 !important;
+    color: #ffffff !important;
+}
+
 /* Upcoming Events Section Styling */
 .upcoming-events {
     background: linear-gradient(145deg, #8b0000, #580000);
@@ -1214,4 +1269,31 @@ footer {
 .navbar .social-buttons .btn:hover, .secondary-nav .social-buttons .btn:hover {
     background: #cc0000;
     border: 2px solid #cc0000;
+}
+
+/* Catch the Cat Button Styling */
+.catch-cat-button {
+    background: linear-gradient(145deg, #333, #111);
+    color: #ff0000;
+    border: 2px solid #ff0000;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-family: 'Permanent Marker', cursive;
+    font-size: 1rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease, background 0.3s ease;
+    margin: 10px;
+}
+
+.catch-cat-button:hover {
+    background: linear-gradient(145deg, #444, #222);
+    transform: scale(1.05);
+    color: #ffffff;
+}
+
+.clickable-area {
+    position: absolute;
+    background: transparent;
+    z-index: 999;
+    pointer-events: auto;
 }
