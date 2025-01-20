@@ -1299,15 +1299,48 @@ footer {
 }
 
 .game-toggle {
-    background-color: #fff;
-    color: #000;
-    border: 2px solid #000;
-    padding: 10px 20px;
-    cursor: pointer;
-    transition: background-color 0.3s, color 0.3s;
+    background-color: #000;
+    border: 2px solid #fff;
+    -webkit-tap-highlight-color: transparent;
+    transition: all 0.3s ease;
+}
+
+.game-toggle .fas.fa-cat::before {
+    color: #fff;
+    transition: color 0.3s ease;
 }
 
 .game-toggle.active {
-    background-color: #000;
-    color: #fff;
+    background-color: #fff;
+    border-color: #000;
+}
+
+.game-toggle.active .fas.fa-cat::before {
+    color: #000;
+}
+
+@media (hover: none) {
+    .game-toggle:hover,
+    .game-toggle:active,
+    .game-toggle:focus {
+        background-color: #000 !important;
+    }
+
+    .game-toggle:hover .fas.fa-cat::before,
+    .game-toggle:active .fas.fa-cat::before,
+    .game-toggle:focus .fas.fa-cat::before {
+        color: #fff !important;
+    }
+
+    .game-toggle.active:hover,
+    .game-toggle.active:active,
+    .game-toggle.active:focus {
+        background-color: #fff !important;
+    }
+
+    .game-toggle.active:hover .fas.fa-cat::before,
+    .game-toggle.active:active .fas.fa-cat::before,
+    .game-toggle.active:focus .fas.fa-cat::before {
+        color: #000 !important;
+    }
 }

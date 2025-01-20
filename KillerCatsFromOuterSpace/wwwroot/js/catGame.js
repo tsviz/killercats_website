@@ -118,8 +118,35 @@ window.CatGame = {
     endGame() {
         const gameButton = document.querySelector('.game-toggle');
         gameButton.classList.remove('active');
-        this.state.cat.style.display = 'none';
-        this.state.clickableArea.style.display = 'none';
+        
+        // Immediately hide game elements
+        if (this.state.cat) {
+            this.state.cat.style.display = 'none';
+        }
+        if (this.state.clickableArea) {
+            this.state.clickableArea.style.display = 'none';
+        }
+
+        // Force remove all possible states
+        gameButton.blur();
+        
+        if ('ontouchstart' in window) {
+            // Force reset for mobile
+            gameButton.style.backgroundColor = '';
+            gameButton.style.pointerEvents = 'none';
+            
+            // Force redraw
+            void gameButton.offsetHeight;
+            
+            setTimeout(() => {
+                gameButton.style.pointerEvents = 'auto';
+                // Ensure cat color is correct
+                const cat = gameButton.querySelector('.fas.fa-cat');
+                if (cat) {
+                    cat.style.color = '';
+                }
+            }, 100);
+        }
         
         // Show final score without blocking alert
         this.state.scoreDisplay.textContent = `Game Over! Final Score: ${this.state.score}`;
@@ -137,8 +164,7 @@ window.CatGame = {
             this.state.score = 0;
             this.state.scoreDisplay.style.display = 'none';
             this.state.scoreDisplay.textContent = `Score: ${this.state.score}`;
-            // Force button state update
-            gameButton.blur();
+            gameButton.blur(); // Additional blur for safety
         }, 3000);
     },
 
