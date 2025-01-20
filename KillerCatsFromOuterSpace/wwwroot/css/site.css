@@ -5,23 +5,22 @@
 
 /* General Styling */
 body {
-    background: linear-gradient(to bottom, #000000, #1a0f1f);
+    background: linear-gradient(to bottom, #1a0f1f, #000000);
     background-image: 
-        radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 40px),
-        radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 30px),
-        radial-gradient(white, rgba(255,255,255,.1) 2px, transparent 40px);
+        radial-gradient(#8b0000, rgba(139,0,0,.2) 2px, transparent 40px),
+        radial-gradient(#8b0000, rgba(139,0,0,.15) 1px, transparent 30px),
+        radial-gradient(#8b0000, rgba(139,0,0,.1) 2px, transparent 40px);
     background-size: 550px 550px, 350px 350px, 250px 250px;
     animation: space-float 30s linear infinite;
-    color: #e0e0e0;
+    color: #ff0000;
     font-family: 'Roboto Condensed', sans-serif;
     font-weight: 400 !important;
     margin: 0;
     padding: 0;
 }
-
 /* Header Styling */
 header {
-    background: #1a1a1a;
+    background: linear-gradient(145deg, #8b0000, #580000);
     color: #ff0000;
     padding: 20px 0;
     text-align: center;
@@ -48,14 +47,11 @@ img {
     height: auto;
 }
 
-.container {
-    max-width: 960px;
-}
-
 .home-button {
     margin-top: 20px;
 }
 
+/* Events Section Styling */
 .events-section {
     background-color: rgba(0, 0, 0, 0.8);
     padding: 30px;
@@ -94,14 +90,39 @@ img {
 }
 
 .container {
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    border: 3px solid #ff0000;
+    background: linear-gradient(145deg, #333, #111);
+    color: #ff0000;
     width: 80%;
     margin: auto;
     overflow: hidden;
+    max-width: 960px;
 }
 
 .event-list {
     list-style: none;
     padding: 0;
+    margin: 0;
+}
+
+.event-list li {
+    background: linear-gradient(145deg, #333, #111);
+    color: #ff0000;
+    border: 2px solid #ff0000;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    margin-bottom: 10px;
+    padding: 15px;
+    border-radius: 5px;
+    font-family: 'Rock Salt', cursive;
+    font-size: 1.2rem;
+    transition: transform 0.3s ease;
+}
+
+.event-list li:hover {
+    transform: scale(1.05);
 }
 
 /* Event List Styling */
@@ -117,6 +138,12 @@ img {
     margin-right: 10px;
     transform: rotate(45deg);
     display: inline-block;
+    font-size: 1.5rem;
+    vertical-align: middle;
+}
+
+.event-list li:hover::before {
+    content: '🔥';
 }
 
 @keyframes spin {
@@ -329,6 +356,15 @@ img {
     .volume-slider {
         width: 40px !important;
     }
+}
+
+.container-fluid {
+    background: linear-gradient(145deg, #333, #111);
+    color: #ff0000;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    border: 3px solid #ff0000;
 }
 
 @media (max-width: 576px) {
@@ -559,12 +595,27 @@ img {
 }
 
 .event-details {
-    background-color: #ffffff;
+    background: linear-gradient(145deg, #333, #111);
+    background-image: 
+        radial-gradient(#ff0000, rgba(255,0,0,.2) 2px, transparent 40px),
+        radial-gradient(#ff0000, rgba(255,0,0,.15) 1px, transparent 30px),
+        radial-gradient(#ff0000, rgba(255,0,0,.1) 2px, transparent 40px);
+    background-size: 550px 550px, 350px 350px, 250px 250px;
+    animation: space-float 30s linear infinite;
+    color: #ff0000;
     padding: 20px;
-    border: 1px solid #dee2e6;
+    border: 2px solid #ff0000;
     border-radius: 8px;
     margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
 }
+
+/* Meteor Animation */
+@keyframes space-float {
+    from { background-position: 0 0, 0 0, 0 0; }
+    to { background-position: 1000px 1000px, 500px 500px, 0 0; }
+}
+
 .event-details p {
     margin: 10px 0;
 }
@@ -781,7 +832,7 @@ img {
 
 /* Navigation Styling */
 .navbar {
-    background: #1a1a1a;
+    background: linear-gradient(145deg, #8b0000, #580000);
     border-bottom: 2px solid #ff0000;
     padding: 15px 30px !important;
 }
@@ -906,15 +957,16 @@ img {
 
 /* Jumbotron Styling */
 .jumbotron {
-    background-size: cover;
+    background: linear-gradient(145deg, #8b0000, #580000);
     color: #ff0000;
     text-shadow: 2px 2px 4px #000;
     padding: 50px 20px;
     border-bottom: 2px solid #ff0000;
 }
 
+/* Card Styling */
 .card {
-    background: #333;
+    background: linear-gradient(145deg, #333, #111);
     color: #ff0000;
     border: 2px solid #ff0000;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
@@ -950,7 +1002,7 @@ img {
 
 /* Footer Styling */
 footer {
-    background: #1a1a1a;
+    background: linear-gradient(145deg, #8b0000, #580000);
     color: #ff0000;
     padding: 20px 0;
     text-align: center;
@@ -971,10 +1023,17 @@ footer {
     }
 }
 
+/* Gradient Border Animation */
 @keyframes gradientBorder {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
 }
 
 @keyframes lightning {
@@ -1114,4 +1173,45 @@ footer {
     margin-right: 12px;
     color: #ff3333;
     text-shadow: 0 0 5px #ff0000;
+}
+
+/* Upcoming Events Section Styling */
+.upcoming-events {
+    background: linear-gradient(145deg, #8b0000, #580000);
+    color: #ff0000;
+    padding: 40px 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    border: 3px solid transparent;
+    background-size: 200% 200%;
+    animation: gradientBorder 3s ease infinite;
+    position: relative;
+    z-index: 1;
+}
+
+/* Navigation Styling */
+.navbar, .secondary-nav {
+    background: linear-gradient(145deg, #8b0000, #580000);
+    border-bottom: 2px solid #ff0000;
+    padding: 15px 30px !important;
+    color: #ff0000;
+}
+
+.navbar .nav-link, .secondary-nav .nav-link {
+    color: #ff0000 !important;
+}
+
+.navbar .nav-link:hover, .secondary-nav .nav-link:hover {
+    color: #ffffff !important;
+}
+
+.navbar .social-buttons .btn, .secondary-nav .social-buttons .btn {
+    background: #ff0000;
+    border: 2px solid #ff0000;
+    color: #ffffff;
+}
+
+.navbar .social-buttons .btn:hover, .secondary-nav .social-buttons .btn:hover {
+    background: #cc0000;
+    border: 2px solid #cc0000;
 }
