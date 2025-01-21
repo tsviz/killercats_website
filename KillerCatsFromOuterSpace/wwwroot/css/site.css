@@ -45,6 +45,7 @@ h1, h2, h3, .navbar-brand {
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3) !important;
     background: linear-gradient(to bottom, #fff 0%, #888 50%, #000 100%);
     -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
     text-shadow: 2px 2px 4px rgba(255, 0, 0, 0.5);
 }
 
