@@ -58,6 +58,16 @@
                                 <h5 class="card-title">@member.Name</h5>
                                 <h6 class="card-subtitle mb-2 text-muted">@member.Instrument</h6>
                                 <p class="card-text">@member.Description</p>
+                                <a class="btn btn-primary" data-toggle="collapse" href="#bio-@member.Name.Replace(" ", "")" role="button" aria-expanded="false" aria-controls="bio-@member.Name.Replace(" ", "")">
+                                    View Bio
+                                </a>
+                                <div class="collapse" id="bio-@member.Name.Replace(" ", "")">
+                                    <div class="card card-body mt-2">
+                                        <div class="bio-content">
+                                            @Html.Raw(member.Bio)
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

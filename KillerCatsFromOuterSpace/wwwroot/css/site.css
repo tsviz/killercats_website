@@ -1377,3 +1377,30 @@ footer {
         color: #000 !important;
     }
 }
+
+.bio-content h1 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+.bio-content p {
+    margin-bottom: 1rem;
+    line-height: 1.6;
+}
+
+.bio-content em {
+    color: #666;
+    font-style: italic;
+}
+
+.bio-content strong {
+    color: #444;
+    font-weight: 600;
+}
+
+.card-body .collapse .card-body {
+    padding: 1.25rem;
+    background-color: #f8f9fa;
+    border-radius: 0.25rem;
+}
