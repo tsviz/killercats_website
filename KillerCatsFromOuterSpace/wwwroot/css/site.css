@@ -72,6 +72,8 @@ img {
     position: relative;
     z-index: 1;
     overflow: hidden;
+    max-width: 1200px; /* Add max-width for larger screens */
+    width: 90%; /* Use percentage width instead of 100% */
 }
 
 /* Add space effect wrapper */
@@ -366,8 +368,9 @@ img {
     }
     
     .events-section {
-        padding: 10px;
-        margin-top: 10px;
+        width: 95%; /* Slightly wider on mobile */
+        padding: 20px;
+        margin: 20px auto;
     }
 }
 
@@ -1482,4 +1485,11 @@ footer {
 
 .bio-toggle[aria-expanded="false"] i {
     transform: rotateY(0deg);
+}
+
+/* Media query for very large screens */
+@media (min-width: 1400px) {
+    .events-section {
+        max-width: 1400px; /* Limit maximum width on very large screens */
+    }
 }
