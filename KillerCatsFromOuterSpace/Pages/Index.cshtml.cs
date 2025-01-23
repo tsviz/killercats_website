@@ -23,31 +23,31 @@ namespace KillerCatsFromOuterSpace.Pages
             {
                 new BandMember { 
                     Name = "Ky", 
-                    Instrument = "Lead Vocals, Bass", 
-                    Description = "Ky brings cosmic vocals and thundering bass lines to our interstellar journey.", 
+                    Instrument = "Lead Vocals, Bass 🎤 🎸", 
+                    Description = "✨ The Voice of the Cosmos\n• Powerful vocal range that spans galaxies\n• Thundering bass lines that shake the stars\n• Charismatic stage presence that draws in audiences across the universe", 
                     Bio = ReadDescription("ky.md"), 
-                    ProfilePictureUrl = "/images/artist_placeholder.png" 
+                    ProfilePictureUrl = "/images/band-members/artist_placeholder.png" 
                 },
                 new BandMember { 
                     Name = "Jay", 
-                    Instrument = "Drums", 
-                    Description = "Jay is a cosmic rhythm master, blending the dynamic sounds of Danny Carey and Abe Cunningham. His drumming brings an electrifying energy to Killer Cats From Outer Space, making every performance an interstellar experience.", 
+                    Instrument = "Drums 🥁", 
+                    Description = "🌟 The Rhythm Master\n• Creates cosmic beats that transcend time and space\n• Blends complex rhythms with otherworldly energy\n• Drives the band's intergalactic sound with precision", 
                     Bio = ReadDescription("jay.md"), 
-                    ProfilePictureUrl = "/images/artist_placeholder.png" 
+                    ProfilePictureUrl = "/images/band-members/artist_placeholder.png"
                 },
                 new BandMember { 
                     Name = "Xavi", 
-                    Instrument = "Guitar", 
-                    Description = "Xavi weaves celestial melodies through space and time with his guitar mastery.", 
+                    Instrument = "Guitar 🎸", 
+                    Description = "💫 The Melodic Explorer\n• Weaves celestial melodies through space and time\n• Crafts sonic landscapes from distant galaxies\n• Masters of ethereal guitar harmonies", 
                     Bio = ReadDescription("xavi.md"), 
-                    ProfilePictureUrl = "/images/artist_placeholder.png" 
+                    ProfilePictureUrl = "/images/band-members/artist_placeholder.png"
                 },
                 new BandMember { 
                     Name = "Ren", 
-                    Instrument = "Guitar", 
-                    Description = "Ren's guitar riffs echo through the cosmos, bringing otherworldly energy to every song.", 
+                    Instrument = "Guitar 🎸", 
+                    Description = "⚡ The Cosmic Shredder\n• Bends space-time with lightning-fast riffs\n• Channels energy from neutron stars into each solo\n• Creates dimensional rifts with face-melting leads", 
                     Bio = ReadDescription("ren.md"), 
-                    ProfilePictureUrl = "/images/artist_placeholder.png" 
+                    ProfilePictureUrl = "/images/band-members/artist_placeholder.png"
                 }
             };
         }

@@ -64,18 +64,60 @@ img {
 
 /* Events Section Styling */
 .events-section {
-    background-color: rgba(0, 0, 0, 0.8);
+    background: linear-gradient(145deg, #111, #000);
+    border: 2px solid #ff0000;
     padding: 30px;
     margin: 40px auto;
     border-radius: 8px;
-    max-width: 800px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.5);
     position: relative;
     z-index: 1;
-    border: 3px solid transparent;
-    background: linear-gradient(45deg, #ff0000, #ff8c00, #ff0000);
-    background-size: 200% 200%;
-    animation: gradientBorder 3s ease infinite;
+    overflow: hidden;
+}
+
+/* Add space effect wrapper */
+.events-section::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, 
+        #ff0000, 
+        transparent 20%,
+        transparent 80%,
+        #ff0000
+    );
+    z-index: -1;
+    animation: spaceGlow 3s infinite;
+}
+
+/* Add star effect */
+.events-section::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 3px),
+        radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 2px),
+        radial-gradient(white, rgba(255,255,255,.1) 2px, transparent 3px);
+    background-size: 550px 550px, 350px 350px, 250px 250px;
+    background-position: 0 0, 40px 60px, 130px 270px;
+    z-index: -1;
+    animation: spaceTwinkle 10s linear infinite;
+}
+
+@keyframes spaceGlow {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+@keyframes spaceTwinkle {
+    from { background-position: 0 0, 40px 60px, 130px 270px; }
+    to { background-position: 550px 550px, 390px 410px, 680px 820px; }
 }
 
 .background-wrapper {
@@ -941,6 +983,10 @@ img {
     letter-spacing: 1px !important;
 }
 
+.btn i {
+    transition: all 0.3s ease;
+}
+
 .section-header .btn {
     padding: 8px 20px !important;
     font-size: 0.9rem !important;
@@ -1003,6 +1049,13 @@ img {
         0% 5%, 5% 0%, 95% 0%, 100% 5%,
         100% 95%, 95% 100%, 5% 100%, 0% 95%
     );
+    border: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
 }
 
 .card-title {
@@ -1015,6 +1068,14 @@ img {
 
 .card-text {
     color: #e0e0e0;
+}
+
+.card-img-top {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-top-left-radius: calc(0.25rem - 1px);
+    border-top-right-radius: calc(0.25rem - 1px);
 }
 
 /* Button Styling */
@@ -1403,4 +1464,22 @@ footer {
     padding: 1.25rem;
     background-color: #f8f9fa;
     border-radius: 0.25rem;
+}
+
+.bio-toggle i {
+    transition: all 0.3s ease;
+    margin-right: 0.5rem;
+    transform-origin: center;
+}
+
+.bio-toggle:hover i {
+    transform: scale(1.1);
+}
+
+.bio-toggle[aria-expanded="true"] i {
+    transform: rotateY(180deg);
+}
+
+.bio-toggle[aria-expanded="false"] i {
+    transform: rotateY(0deg);
 }
