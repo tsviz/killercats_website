@@ -1,0 +1,37 @@
+name: Schedule Azure WebApp
+
+on:
+  schedule:
+    # Stop at 12 AM EST (0500 UTC)
+    - cron: '0 5 * * 1-5'
+    # Start at 8 AM EST (1300 UTC)
+    - cron: '0 13 * * 1-5'
+
+env:
+  AZURE_WEBAPP_NAME: killercats
+  AZURE_RESOURCE_GROUP: music_apps-rg
+
+jobs:
+  manage-webapp:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Azure Login
+      uses: azure/login@v1
+      with:
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_578490DF43924401BF4BFD21AFAC5F01 }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_492BE883558C47D1B742160C838AE7CA }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_9538AFF53F5C4982B1B2939B1A48AE34 }}
+
+        
+    - name: Stop WebApp
+      if: github.event.schedule == '0 5 * * 1-5'
+      run: |
+        az webapp stop --name ${{ env.AZURE_WEBAPP_NAME }} \
+          --resource-group ${{ env.AZURE_RESOURCE_GROUP }}
+          
+    - name: Start WebApp
+      if: github.event.schedule == '0 13 * * 1-5'
+      run: |
+        az webapp start --name ${{ env.AZURE_WEBAPP_NAME }} \
+          --resource-group ${{ env.AZURE_RESOURCE_GROUP }}
