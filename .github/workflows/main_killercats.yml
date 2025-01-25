@@ -10,6 +10,7 @@ on:
     paths-ignore:
       - 'README.md'
       - 'CONTRIBUTING.md'
+      - '.github/workflows/schedule-webapp.yml'
   workflow_dispatch:
 
 jobs:
