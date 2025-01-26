@@ -700,19 +700,35 @@ img {
 }
 
 .event-details {
-    background: linear-gradient(145deg, #333, #111);
-    background-image: 
-        radial-gradient(#ff0000, rgba(255,0,0,.2) 2px, transparent 40px),
-        radial-gradient(#ff0000, rgba(255,0,0,.15) 1px, transparent 30px),
-        radial-gradient(#ff0000, rgba(255,0,0,.1) 2px, transparent 40px);
-    background-size: 550px 550px, 350px 350px, 250px 250px;
-    animation: space-float 30s linear infinite;
-    color: #ff0000;
+    background: linear-gradient(145deg, #ffe0e0, #ffd0d0);
+    color: #cc0000;
     padding: 20px;
     border: 2px solid #ff0000;
     border-radius: 8px;
     margin-bottom: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+.event-details:hover {
+    border-color: #ff3333;
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.3);
+}
+
+.event-details p {
+    margin: 10px 0;
+    color: #990000;
+}
+
+.event-details a {
+    color: #ff0000;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.event-details a:hover {
+    color: #cc0000;
+    text-decoration: underline;
 }
 
 /* Meteor Animation */
@@ -1116,6 +1132,9 @@ img {
     text-shadow: 3px 3px 6px #000;
     text-align: center;
     margin-top: 20px;
+    position: relative;
+    z-index: 1;
+    text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000, 0 0 30px #ff0000, 0 0 40px #ff0000;
 }
 
 /* Jumbotron Styling */
@@ -1125,21 +1144,43 @@ img {
     text-shadow: 2px 2px 4px #000;
     padding: 50px 20px;
     border-bottom: 2px solid #ff0000;
+    position: relative;
+    z-index: 1;
+}
+
+.jumbotron::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('/images/lightning-image.jpg') no-repeat center center;
+    background-size: cover;
+    opacity: 0.5; /* Adjust opacity as needed */
+    z-index: -1;
+    animation: lightning-fade 3s infinite; /* Adjust animation timing */
+}
+
+@keyframes lightning-fade {
+    0%, 100% {
+        opacity: 0.2; /* More visible */
+    }
+    50% {
+        opacity: 0.0; /* Even more visible */
+    }
 }
 
 /* Card Styling */
 .card {
-    background: linear-gradient(145deg, #333, #111);
+        background: linear-gradient(145deg, #0b0b0b, #0a0909);
+    box-shadow: 0 0 15px rgba(255, 182, 230, 0.3);
+    transition: all 0.3s ease;
     color: #ff0000;
-    border: 2px solid #ff0000;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-    clip-path: polygon(
-        0% 5%, 5% 0%, 95% 0%, 100% 5%,
-        100% 95%, 95% 100%, 5% 100%, 0% 95%
-    );
-    border: none;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s;
+    text-shadow: 0 0 1px rgba(255, 0, 0, 0.3);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-weight: 500;
 }
 
 .card:hover {
@@ -1227,6 +1268,24 @@ footer {
 @keyframes catEyes {
     0%, 100% { opacity: 0.5; }
     50% { opacity: 1; }
+}
+
+@keyframes lightning {
+    0%, 100% {
+        text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000, 0 0 30px #ff0000, 0 0 40px #ff0000;
+    }
+    50% {
+        text-shadow: 0 0 20px #ffffff, 0 0 30px #ffffff, 0 0 40px #ffffff, 0 0 50px #ffffff;
+    }
+}
+
+@keyframes lightning-flash {
+    0%, 100% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
 }
 
 .store-nav-item {
@@ -1671,4 +1730,57 @@ footer {
     .container-fluid {
         background-color: transparent !important;
     }
+}
+
+main.container-fluid,
+.jumbotron {
+    background: none !important;
+}
+
+/* Navbar Styling */
+@media (max-width: 768px) {
+    .contact-info-inline {
+        display: flex !important;
+        align-items: center !important;
+        gap: 10px !important;
+        justify-content: center !important;
+    }
+    .boombox-player {
+        width: 50px !important;
+        height: 50px !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        background-color: #000 !important;
+        border: 2px solid #ff0000 !important;
+        border-radius: 10px !important;
+        padding: 5px !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+    .boombox-controls {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 5px !important;
+    }
+    .boombox-play {
+        width: 30px !important;
+        height: 30px !important;
+    }
+    .boombox-volume {
+        display: none !important;
+    }
+}
+
+.list-group-item {
+    background-color: #000000 !important;
+    color: #ff0000;
+    border: 1px solid #ff0000;
+}
+
+.list-group-item:hover {
+    background-color: #000000 !important;
+    border-color: #ff3333;
 }

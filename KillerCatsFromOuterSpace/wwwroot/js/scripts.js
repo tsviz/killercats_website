@@ -235,51 +235,92 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 document.addEventListener('DOMContentLoaded', function() {
+    const eventForm = document.getElementById('eventRequestForm');
     const submitButton = document.getElementById('submitEventBtn');
-    let hasShownWarning = false;
 
-    if (submitButton) {
-        submitButton.addEventListener('click', function(e) {
-            e.preventDefault();
+    function handleSubmission(e) {
+        e.preventDefault();
+        e.stopPropagation();  // Prevent event bubbling
+
+        const eventDate = document.getElementById('eventDate').value.trim();
+        const eventDetails = document.getElementById('eventDetails').value.trim();
+
+        // Debug logging for mobile
+        console.log('Form submission:', {
+            eventDate,
+            eventDetails,
+            isMobile: /iPhone|iPad|iPod|Android/i.test(navigator.userAgent)
+        });
+
+        if (eventDate && eventDetails) {
+            const [year, month, day] = eventDate.split('-');
+            const formattedDate = `${month}-${day}-${year}`;
             
-            const eventDate = document.getElementById('eventDate');
-            const eventDetails = document.getElementById('eventDetails');
-            
-            if (!eventDate || !eventDetails) return;
-
-            const dateValue = eventDate.value;
-            const detailsValue = eventDetails.value;
-
-            if (!dateValue || !detailsValue) {
-                if (!hasShownWarning) {
-                    alert('Please fill in both the date and details fields.');
-                    hasShownWarning = true;
-                }
-                return;
-            }
-
-            // If we get here, both fields are filled
-            const subject = encodeURIComponent('Event Schedule Request');
-            const body = encodeURIComponent(`Event Date: ${dateValue}\n\nEvent Details: ${detailsValue}`);
+            const subject = encodeURIComponent(`Event Schedule Request - ${formattedDate}`);
+            const body = encodeURIComponent(`Event Date: ${formattedDate}\n\nEvent Details: ${eventDetails}`);
             const mailtoLink = `mailto:kk1llercatsfromouterspace@gmail.com?subject=${subject}&body=${body}`;
-
-            window.location.href = mailtoLink;
             
+            // Clean up and redirect
             $('#scheduleModal').modal('hide');
             $('body').removeClass('modal-open');
             $('.modal-backdrop').remove();
             
-            // Clear form fields
-            eventDate.value = '';
-            eventDetails.value = '';
+            // Short delay for mobile
+            setTimeout(() => {
+                window.location.href = mailtoLink;
+            }, 100);
+
+            // Clear form
+            eventForm.reset();
             
-            // Reset warning flag
-            hasShownWarning = false;
-        });
+            return false;
+        }
+        alert('Please fill in both the date and details fields.');
+        return false;
     }
 
-    // Reset warning flag when modal is closed
-    $('#scheduleModal').on('hidden.bs.modal', function () {
-        hasShownWarning = false;
-    });
+    // Remove all existing listeners
+    const newForm = eventForm.cloneNode(true);
+    eventForm.parentNode.replaceChild(newForm, eventForm);
+    
+    // Add single submit handler
+    newForm.addEventListener('submit', handleSubmission);
+    
+    // Handle both click and touch events
+    submitButton.addEventListener('click', handleSubmission);
+    submitButton.addEventListener('touchend', handleSubmission);
+});
+
+document.getElementById('eventRequestForm').addEventListener('submit', function(e) {
+    e.preventDefault();  // Prevent default form submission
+
+    const eventDate = document.getElementById('eventDate').value.trim();
+    const eventDetails = document.getElementById('eventDetails').value.trim();
+    
+    console.log('Date:', eventDate);
+    console.log('Details:', eventDetails);
+
+    if (eventDate && eventDetails) {
+        const formData = new FormData(this);
+        
+        // Send the form data to the server
+        fetch('/Home/SubmitEventRequest', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => {
+            if (response.ok) {
+                alert('Event request submitted successfully!');
+                this.reset();
+            } else {
+                alert('Failed to submit event request.');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('An error occurred while submitting the request.');
+        });
+    } else {
+        alert('Please fill in both the date and details fields.');
+    }
 });

@@ -27,10 +27,20 @@
             </div>
             <button class="btn btn-outline-light ms-2 game-toggle" onclick="initCatGame()">
                 <i class="fas fa-cat"></i> 
-                <!-- <span class="game-text">Catch the Cat!</span> -->
             </button>
+            <div class="boombox-player ms-2">
+                <div class="boombox-controls">
+                    <button class="boombox-play" onclick="togglePlay()" title="Play/Pause">
+                        <i class="fas fa-play"></i>
+                    </button>
+                    <input type="range" class="boombox-volume" min="0" max="1" step="0.1" value="1" oninput="setVolume(this.value)">
+                </div>
+                <audio id="audio-player" loop="">
+                    <source src="/audio/hard-rock-audio.mp3" type="audio/mpeg">
+                </audio>
+            </div>
             <audio id="catSound" src="/sounds/cat-meow.mp3" preload="auto"></audio>
-            <img id="preloadedCatImage" src="/images/animated-cat.gif" style="display: none;" />
+            <img id="preloadedCatImage" src="/images/animated-cat.gif" style="display: none;">
             <button class="navbar-toggler" 
                     type="button" data-toggle="collapse" 
                     data-target="#navbarNav">
@@ -56,34 +66,22 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light secondary-nav">
         <div class="container-fluid">
             <ul class="navbar-nav me-auto d-flex align-items-center">
-                <li class="nav-item">
+                <li class="nav-item contact-info-inline">
                     <a class="nav-link" href="#about">About Us</a>
-                </li>
-                <li class="nav-item">
-                    <div class="boombox-player">
-                        <div class="boombox-controls">
-                            <button class="boombox-play" onclick="togglePlay()" title="Play/Pause">
-                                <i class="fas fa-play"></i>
-                            </button>
-                            <input type="range" class="boombox-volume" min="0" max="1" step="0.1" value="1" 
-                                   oninput="setVolume(this.value)">
-                        </div>
-                        <audio id="audio-player" loop>
-                            <source src="~/audio/hard-rock-audio.mp3" type="audio/mpeg">
-                        </audio>
-                    </div>
+                    <a class="nav-link" href="mailto:kk1llercatsfromouterspace@gmail.com">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                    <a class="nav-link" href="tel:+1234567890">
+                        <i class="fas fa-phone"></i>
+                    </a>
                 </li>
                 <li class="nav-item store-nav-item">
-                    <a href="https://www.ebay.com/placeholder-store" 
-                       target="_blank"
-                       class="store-link"
-                       title="Visit our Store">
+                    <a href="https://www.ebay.com/placeholder-store" target="_blank" class="store-link" title="Visit our Store">
                         <i class="fas fa-shopping-cart"></i>
                         Merch Store
                     </a>
                 </li>
             </ul>
-            
             <div class="social-buttons">
                 <div class="social-button">
                     <a href="https://facebook.com/placeholder" target="_blank" class="btn facebook-btn" title="Facebook">
@@ -111,19 +109,6 @@
                     </a>
                 </div>
             </div>
-            
-            <ul class="navbar-nav contact-info">
-                <li class="nav-item">
-                    <a class="nav-link" href="mailto:kk1llercatsfromouterspace@gmail.com">
-                        <i class="fas fa-envelope"></i> Email Us!
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="tel:+1234567890">
-                        <i class="fas fa-phone"></i> Call Us!
-                    </a>
-                </li>
-            </ul>
         </div>
     </nav>
 
