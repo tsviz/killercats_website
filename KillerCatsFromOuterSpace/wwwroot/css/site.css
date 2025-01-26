@@ -1,20 +1,20 @@
 @import url('https://example.com/styles1.css');
 @import url('https://example.com/styles2.css');
-@import url('https://fonts.googleapis.com/css2?family=Metal+Mania&family=Permanent+Marker&family=Roboto+Condensed:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Metal+Mania&family=Permanent+Marker&family=Roboto+Condensed:wght@400;700&displaye=swap');
 @import url('https://fonts.googleapis.com/css2?family=Rock+Salt&family=Metal+Mania&family=Permanent+Marker&display=swap');
 
 /* General Styling */
 body {
     background: linear-gradient(to bottom, #1a0f1f, #000000);
     background-image: 
-        radial-gradient(circle at 20% 20%, #444, #000 70%),
-        radial-gradient(circle at 80% 30%, #555, #000 70%),
+        radial-gradient(circlev at 20% 20%, #444, #000 70%),
+        radial-gradient(circlee at 80% 30%, #555, #000 70%),
         radial-gradient(circle at 50% 80%, #666, #000 70%),
         radial-gradient(#8b0000, rgba(139,0,0,.2) 2px, transparent 40px),
         radial-gradient(#8b0000, rgba(139,0,0,.15) 1px, transparent 30px),
         radial-gradient(#8b0000, rgba(139,0,0,.1) 2px, transparent 40px);
-    background-size: 200px 200px, 250px 250px, 300px 300px, 550px 550px, 350px 350px, 250px 250px;
-    background-position: top left, top right, bottom left, center, center, center;
+    background-size: 200px 200px, 250px 250px, 300px 300px, 550pxn 550px, 350px 350px, 250px 250px;
+    background-position: top left, top right, bottom left, center,t center, center;
     animation: space-float 30s linear infinite, asteroid-move 10s linear infinite;
     color: #ff0000;
     font-family: 'Roboto Condensed', sans-serif;
@@ -94,22 +94,22 @@ img {
     animation: spaceGlow 3s infinite;
 }
 
-/* Add star effect */
+/* Update star effect without rotation */
 .events-section::after {
     content: '';
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    top: -50%;
+    left: -50%;
+    right: -50%;
+    bottom: -50%;
     background-image: 
-        radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 3px),
-        radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 2px),
-        radial-gradient(white, rgba(255,255,255,.1) 2px, transparent 3px);
-    background-size: 550px 550px, 350px 350px, 250px 250px;
+        radial-gradient(white, rgba(255,255,255,.08) 2px, transparent 3px),
+        radial-gradient(white, rgba(255,255,255,.05) 1px, transparent 2px),
+        radial-gradient(white, rgba(255,255,255,.03) 2px, transparent 3px);
+    background-size: 750px 750px, 450px 450px, 350px 350px;
     background-position: 0 0, 40px 60px, 130px 270px;
     z-index: -1;
-    animation: spaceTwinkle 10s linear infinite;
+    animation: gentleStars 60s linear infinite;
 }
 
 @keyframes spaceGlow {
@@ -117,9 +117,10 @@ img {
     50% { opacity: 0.5; }
 }
 
-@keyframes spaceTwinkle {
-    from { background-position: 0 0, 40px 60px, 130px 270px; }
-    to { background-position: 550px 550px, 390px 410px, 680px 820px; }
+@keyframes gentleStars {
+    to { 
+        background-position: 750px 750px, 490px 510px, 480px 620px;
+    }
 }
 
 .background-wrapper {
@@ -857,6 +858,42 @@ img {
         font-size: 1rem !important;
     }
 }
+
+/* Enhanced social icons */
+.social-buttons .social-button a {
+    color: #fff;
+    font-size: 1.2rem;
+    padding: 10px;
+    margin: 0 5px;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.social-buttons .social-button a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
+    z-index: -1;
+}
+
+.social-buttons .social-button a:hover {
+    transform: translateY(-3px);
+    color: #fff;
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+}
+
+.social-buttons .facebook-btn:hover::before { box-shadow: 0 0 15px #4267B2; }
+.social-buttons .instagram-btn:hover::before { box-shadow: 0 0 15px #E1306C; }
+.social-buttons .twitter-btn:hover::before { box-shadow: 0 0 15px #1DA1F2; }
+.social-buttons .youtube-btn:hover::before { box-shadow: 0 0 15px #FF0000; }
+.social-buttons .tiktok-btn:hover::before { box-shadow: 0 0 15px #000000; }
 
 .secondary-nav {
     border-bottom: 1px solid #dee2e6;
