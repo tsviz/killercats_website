@@ -126,7 +126,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         const subject = encodeURIComponent(`Event Schedule Request - ${formattedDate}`);
         const body = encodeURIComponent(`Event Date: ${formattedDate}\n\nEvent Details: ${eventDetails}`);
-        const mailtoLink = `mailto:killercats@outerspace.com?subject=${subject}&body=${body}`;
+        const mailtoLink = `mailto:kk1llercatsfromouterspace@gmail.com?subject=${subject}&body=${body}`;
         
         // Open mailto link
         window.location.href = mailtoLink;
@@ -189,7 +189,7 @@ document.addEventListener('DOMContentLoaded', function () {
         // Create and open mailto link
         const subject = encodeURIComponent('Event Schedule Request');
         const body = encodeURIComponent(`Event Date: ${dateValue}\n\nEvent Details: ${detailsValue}`);
-        const mailtoLink = `mailto:killercats@outerspace.com?subject=${subject}&body=${body}`;
+        const mailtoLink = `mailto:kk1llercatsfromouterspace@gmail.com?subject=${subject}&body=${body}`;
 
         window.location.href = mailtoLink;
 
@@ -261,7 +261,7 @@ document.addEventListener('DOMContentLoaded', function() {
             // If we get here, both fields are filled
             const subject = encodeURIComponent('Event Schedule Request');
             const body = encodeURIComponent(`Event Date: ${dateValue}\n\nEvent Details: ${detailsValue}`);
-            const mailtoLink = `mailto:killercats@outerspace.com?subject=${subject}&body=${body}`;
+            const mailtoLink = `mailto:kk1llercatsfromouterspace@gmail.com?subject=${subject}&body=${body}`;
 
             window.location.href = mailtoLink;
             
