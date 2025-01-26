@@ -6,6 +6,7 @@ on:
     - cron: '0 5 * * 1-5'
     # Start at 8 AM EST (1300 UTC)
     - cron: '0 13 * * 1-5'
+  workflow_dispatch:  # Enable manual triggers
 
 env:
   AZURE_WEBAPP_NAME: killercats
@@ -19,19 +20,41 @@ jobs:
     - name: Azure Login
       uses: azure/login@v1
       with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_578490DF43924401BF4BFD21AFAC5F01 }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_492BE883558C47D1B742160C838AE7CA }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_9538AFF53F5C4982B1B2939B1A48AE34 }}
+        client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_578490DF43924401BF4BFD21AFAC5F01 }}
+        tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_492BE883558C47D1B742160C838AE7CA }}
+        subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_9538AFF53F5C4982B1B2939B1A48AE34 }}
 
+    - name: Check current time by only running on the hour
+      id: time
+      run: echo "hour=$(TZ=America/Chicago date +%H)" >> $GITHUB_ENV
         
     - name: Stop WebApp
-      if: github.event.schedule == '0 5 * * 1-5'
+      if: env.hour == '00'
       run: |
-        az webapp stop --name ${{ env.AZURE_WEBAPP_NAME }} \
+        az webapp stop \
+          --name ${{ env.AZURE_WEBAPP_NAME }} \
           --resource-group ${{ env.AZURE_RESOURCE_GROUP }}
+        echo "Stopped webapp at $(date)"
           
     - name: Start WebApp
-      if: github.event.schedule == '0 13 * * 1-5'
+      if: env.hour == '08'
       run: |
-        az webapp start --name ${{ env.AZURE_WEBAPP_NAME }} \
+        az webapp start \
+          --name ${{ env.AZURE_WEBAPP_NAME }} \
           --resource-group ${{ env.AZURE_RESOURCE_GROUP }}
+        echo "Started webapp at $(date)"
+
+    - name: Check WebApp Status and turn on or off if workflow dispatched
+      if: github.event_name == 'workflow_dispatch'
+      run: |
+        webapp_status=$(az webapp show --name ${{ env.AZURE_WEBAPP_NAME }} --resource-group ${{ env.AZURE_RESOURCE_GROUP }} --query state --output tsv)
+        echo "WebApp Status: $webapp_status"
+        if [ "$webapp_status" == "Running" ]; then
+          echo "WebApp is running. Stopping WebApp..."
+          az webapp stop --name ${{ env.AZURE_WEBAPP_NAME }} --resource-group ${{ env.AZURE_RESOURCE_GROUP }}
+          echo "WebApp stopped at $(date)"
+        else
+          echo "WebApp is stopped. Starting WebApp..."
+          az webapp start --name ${{ env.AZURE_WEBAPP_NAME }} --resource-group ${{ env.AZURE_RESOURCE_GROUP }}
+          echo "WebApp started at $(date)"
+        fi
