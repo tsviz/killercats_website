@@ -17,6 +17,8 @@ jobs:
     runs-on: ubuntu-latest
     environment:
         name: 'Production'
+    permissions:
+      id-token: write #This is required for requesting the JWT
     
     steps:
     - name: Azure Login
