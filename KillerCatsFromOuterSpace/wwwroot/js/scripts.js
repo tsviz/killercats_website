@@ -324,3 +324,78 @@ document.getElementById('eventRequestForm').addEventListener('submit', function(
         alert('Please fill in both the date and details fields.');
     }
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+    const subscribeBtn = document.getElementById('subscribeBtn');
+    const newsletterModal = document.getElementById('newsletterModal');
+    
+    if (subscribeBtn) {
+        subscribeBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            const email = document.getElementById('emailInput').value.trim();
+            
+            if (!email) {
+                alert('Please enter your email address');
+                return;
+            }
+            
+            const subject = encodeURIComponent('Newsletter Subscription Request');
+            const body = encodeURIComponent(`New subscriber email: ${email}`);
+            // const mailtoLink = `mailto:kk1llercatsfromouterspace@gmail.com?subject=${subject}&body=${body}`;
+            const mailtoLink = `mailto:zandanys@gmail.com?subject=${subject}&body=${body}`;
+            
+            // Properly close modal using Bootstrap
+            const bsModal = bootstrap.Modal.getInstance(newsletterModal);
+            if (bsModal) {
+                bsModal.hide();
+            }
+            
+            // Small delay before opening email client
+            setTimeout(() => {
+                window.location.href = mailtoLink;
+                document.getElementById('newsletterForm').reset();
+            }, 100);
+        });
+    }
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    const newsletterForm = document.getElementById('newsletterForm');
+    const newsletterModal = document.getElementById('newsletterModal');
+    const modal = new bootstrap.Modal(newsletterModal);
+
+    if (newsletterForm) {
+        newsletterForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('emailInput').value.trim();
+            
+            if (!email) {
+                alert('Please enter your email address');
+                return;
+            }
+            
+            const subject = encodeURIComponent('Newsletter Subscription Request');
+            const body = encodeURIComponent(`New subscriber email: ${email}`);
+            const mailtoLink = `mailto:zandanys@gmail.com?subject=${subject}&body=${body}`;
+
+            // Hide modal first
+            modal.hide();
+            
+            // Remove modal backdrop and cleanup
+            newsletterModal.addEventListener('hidden.bs.modal', function () {
+                document.body.classList.remove('modal-open');
+                const backdrop = document.querySelector('.modal-backdrop');
+                if (backdrop) {
+                    backdrop.remove();
+                }
+                
+                // Reset form and open mailto
+                newsletterForm.reset();
+                window.location.href = mailtoLink;
+            }, { once: true });
+        });
+    }
+});

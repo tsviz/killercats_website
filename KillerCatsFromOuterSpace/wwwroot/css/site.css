@@ -1784,3 +1784,33 @@ main.container-fluid,
     background-color: #000000 !important;
     border-color: #ff3333;
 }
+
+.newsletter-modal .modal-content {
+    background: linear-gradient(145deg, #ffb6e6, #e8b5ff);
+    border: 2px solid #ff0000;
+}
+
+.newsletter-form {
+    padding: 20px;
+}
+
+.newsletter-form input {
+    border: 2px solid #ff0000;
+    border-radius: 4px;
+    padding: 8px;
+    margin-bottom: 15px;
+}
+
+.newsletter-success {
+    color: #28a745;
+    padding: 10px;
+    border-radius: 4px;
+    display: none;
+}
+
+.newsletter-error {
+    color: #dc3545;
+    padding: 10px;
+    border-radius: 4px;
+    display: none;
+}
