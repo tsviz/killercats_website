@@ -33,7 +33,7 @@ jobs:
       run: echo "hour=$(TZ=America/Chicago date +%H)" >> $GITHUB_ENV
         
     - name: Stop WebApp
-      if: env.hour == '00'
+      if: env.hour == '00' && github.event_name != 'workflow_dispatch'
       run: |
         az webapp stop \
           --name ${{ env.AZURE_WEBAPP_NAME }} \
@@ -41,7 +41,7 @@ jobs:
         echo "Stopped webapp at $(date)"
           
     - name: Start WebApp
-      if: env.hour == '08'
+      if: env.hour == '08' && github.event_name != 'workflow_dispatch'
       run: |
         az webapp start \
           --name ${{ env.AZURE_WEBAPP_NAME }} \
