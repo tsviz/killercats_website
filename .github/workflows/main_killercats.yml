@@ -1,22 +1,19 @@
 # Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 
-name: Build and deploy ASP.Net Core app to Azure Web App - killercats
+name: Build and deploy ASP.Net Core app to Azure Web App - KillerCats
 
 on:
   push:
     branches:
       - main
-    paths-ignore:
-      - 'README.md'
-      - 'CONTRIBUTING.md'
-      - '.github/workflows/schedule-webapp.yml'
-      - '.github/workflows/codeql.yml'
   workflow_dispatch:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
+    permissions:
+      contents: read #This is required for actions/checkout
 
     steps:
       - uses: actions/checkout@v4
@@ -24,13 +21,13 @@ jobs:
       - name: Set up .NET Core
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: '9.x'
+          dotnet-version: '8.x'
 
       - name: Build with dotnet
         run: dotnet build --configuration Release
 
       - name: dotnet publish
-        run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
+        run: dotnet publish -c Release -o "${{env.DOTNET_ROOT}}/myapp"
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
@@ -39,13 +36,14 @@ jobs:
           path: ${{env.DOTNET_ROOT}}/myapp
 
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     needs: build
     environment:
       name: 'Production'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
     permissions:
       id-token: write #This is required for requesting the JWT
+      contents: read #This is required for actions/checkout
 
     steps:
       - name: Download artifact from build job
@@ -56,15 +54,15 @@ jobs:
       - name: Login to Azure
         uses: azure/login@v2
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_578490DF43924401BF4BFD21AFAC5F01 }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_492BE883558C47D1B742160C838AE7CA }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_9538AFF53F5C4982B1B2939B1A48AE34 }}
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_22B8CAFDA55E4089846CF4880CC647C1 }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_D8A3AD17986B4D3887A3CE60D28466A5 }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_F1E1F7C2E2314A348592FAE9F241E60F }}
 
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v3
         with:
-          app-name: 'killercats'
+          app-name: 'KillerCats'
           slot-name: 'Production'
           package: .
           
