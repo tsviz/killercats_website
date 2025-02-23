@@ -1,39 +1,64 @@
-@import url('https://fonts.googleapis.com/css2?family=Metal+Mania&family=Permanent+Marker&family=Roboto+Condensed:wght@400;700&displaye=swap');
+@import url('https://fonts.googleapis.com/css2?family=Metal+Mania&family=Permanent+Marker&family=Roboto+Condensed:wght@400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Rock+Salt&family=Metal+Mania&family=Permanent+Marker&display=swap');
 
 /* General Styling */
 body {
-    background: linear-gradient(to bottom, #1a0f1f, #000000);
+    background: linear-gradient(to bottom, #1a0f1f, #0000ff); /* Changed black to electric blue */
     background-image: 
-        radial-gradient(circlev at 20% 20%, #444, #000 70%),
-        radial-gradient(circlee at 80% 30%, #555, #000 70%),
-        radial-gradient(circle at 50% 80%, #666, #000 70%),
-        radial-gradient(#8b0000, rgba(139,0,0,.2) 2px, transparent 40px),
-        radial-gradient(#8b0000, rgba(139,0,0,.15) 1px, transparent 30px),
-        radial-gradient(#8b0000, rgba(139,0,0,.1) 2px, transparent 40px);
-    background-size: 200px 200px, 250px 250px, 300px 300px, 550pxn 550px, 350px 350px, 250px 250px;
-    background-position: top left, top right, bottom left, center,t center, center;
-    animation: space-float 30s linear infinite, asteroid-move 10s linear infinite;
-    color: #ff0000;
+        radial-gradient(circle at 20% 20%, #444, #0000ff 70%), /* Changed black to electric blue */
+        radial-gradient(circle at 80% 30%, #555, #0000ff 70%), /* Changed black to electric blue */
+        radial-gradient(circle at 50% 80%, #666, #0000ff 70%), /* Changed black to electric blue */
+        radial-gradient(#ff69b4, rgba(255,105,180,.2) 2px, transparent 40px), /* Changed red to hot pink */
+        radial-gradient(#ff69b4, rgba(255,105,180,.15) 1px, transparent 30px), /* Changed red to hot pink */
+        radial-gradient(#ff69b4, rgba(255,105,180,.1) 2px, transparent 40px), /* Changed red to hot pink */
+        url('/images/killer-cats-main-logo.jpeg'); /* Add the main logo image */
+    background-size: cover; /* Ensure the image covers the entire background */
+    background-position: center;
+    background-repeat: no-repeat;
+    color: #ff69b4; /* Changed red to hot pink */
     font-family: 'Roboto Condensed', sans-serif;
     font-weight: 400 !important;
     margin: 0;
     padding: 0;
+    opacity: 0; /* Initially hide the body content */
+    transition: opacity 1s ease-in-out; /* Add a fade-in effect */
+    background-color: white; /* Change this if it's set to blue */
+}
+
+.floating-home-btn {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    z-index: 1000;
+    padding: 10px 20px;
+    font-size: 1rem;
+}
+
+@media (min-width: 768px) {
+    .floating-home-btn {
+        padding: 40px 80px;
+        font-size: 2rem;
+    }
+}
+
+/* Show the body content after 2 seconds */
+body.show-content {
+    opacity: 1;
 }
 
 /* Asteroid Animation */
 @keyframes asteroid-move {
-    0% { background-position: top left, top right, bottom left, center, center, center; }
-    100% { background-position: bottom right, bottom left, top right, center, center, center; }
+    0% { background-position: top left, top right, bottom left, center, center, center, center; }
+    100% { background-position: bottom right, bottom left, top right, center, center, center, center; }
 }
 
 /* Header Styling */
 header {
-    background: linear-gradient(145deg, #8b0000, #580000);
-    color: #ff0000;
+    background: linear-gradient(145deg, #ff69b4, #ff1493); /* Changed red to hot pink */
+    color: #ff69b4; /* Changed red to hot pink */
     padding: 20px 0;
     text-align: center;
-    border-bottom: 2px solid #ff0000;
+    border-bottom: 2px solid #ff69b4; /* Changed red to hot pink */
 }
 
 h1, h2, h3, .navbar-brand {
@@ -41,10 +66,10 @@ h1, h2, h3, .navbar-brand {
     text-transform: uppercase !important;
     letter-spacing: 2px !important;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3) !important;
-    background: linear-gradient(to bottom, #fff 0%, #888 50%, #000 100%);
+    background: linear-gradient(to bottom, #fff 0%, #888 50%, #0000ff 100%); /* Changed black to electric blue */
     -webkit-text-fill-color: transparent;
     -webkit-background-clip: text;
-    text-shadow: 2px 2px 4px rgba(255, 0, 0, 0.5);
+    text-shadow: 2px 2px 4px rgba(255, 105, 180, 0.5); /* Changed red to hot pink */
 }
 
 h1 {
@@ -62,8 +87,8 @@ img {
 
 /* Events Section Styling */
 .events-section {
-    background: linear-gradient(145deg, #111, #000);
-    border: 2px solid #ff0000;
+    background: linear-gradient(145deg, #111, #0000ff); /* Changed black to electric blue */
+    border: 2px solid #ff69b4; /* Changed red to hot pink */
     padding: 30px;
     margin: 40px auto;
     border-radius: 8px;
@@ -72,6 +97,7 @@ img {
     overflow: hidden;
     max-width: 1200px; /* Add max-width for larger screens */
     width: 90%; /* Use percentage width instead of 100% */
+    background-color: white; /* Ensure the events section has a proper background color */
 }
 
 /* Add space effect wrapper */
@@ -83,10 +109,10 @@ img {
     right: -2px;
     bottom: -2px;
     background: linear-gradient(45deg, 
-        #ff0000, 
+        #ff69b4, /* Changed red to hot pink */
         transparent 20%,
         transparent 80%,
-        #ff0000
+        #ff69b4 /* Changed red to hot pink */
     );
     z-index: -1;
     animation: spaceGlow 3s infinite;
@@ -147,9 +173,9 @@ img {
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-    border: 3px solid #ff0000;
-    background: linear-gradient(145deg, #333, #111);
-    color: #ff0000;
+    border: 3px solid #ff69b4; /* Changed red to hot pink */
+    background: linear-gradient(145deg, #333, #0000ff); /* Changed black to electric blue */
+    color: #ff69b4; /* Changed red to hot pink */
     width: 80%;
     margin: auto;
     overflow: hidden;
@@ -163,9 +189,9 @@ img {
 }
 
 .event-list li {
-    background: linear-gradient(145deg, #333, #111);
-    color: #ff0000;
-    border: 2px solid #ff0000;
+    background: linear-gradient(145deg, #333, #0000ff); /* Changed black to electric blue */
+    color: #ff69b4; /* Changed red to hot pink */
+    border: 2px solid #ff69b4; /* Changed red to hot pink */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
     margin-bottom: 10px;
     padding: 15px;
@@ -182,8 +208,8 @@ img {
 /* Event List Styling */
 .event-list li {
     background: #222;
-    color: #ff0000;
-    border: 1px solid #ff0000;
+    color: #ff69b4; /* Changed red to hot pink */
+    border: 1px solid #ff69b4; /* Changed red to hot pink */
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
 }
 
@@ -217,6 +243,7 @@ img {
     width: 70px;
     height: auto;
     animation: spin 6s linear infinite;
+    z-index: 3;
 }
 
 .spinning-guitar.left {
@@ -268,7 +295,7 @@ img {
 }
 
 .play-button {
-    background-color: #ff0000;
+    background-color: #ff69b4; /* Changed red to hot pink */
     color: white;
     border: none;
     border-radius: 50%;
@@ -284,7 +311,7 @@ img {
 .volume-slider {
     width: 100px;
     height: 5px;
-    background: #ff0000;
+    background: #ff69b4; /* Changed red to hot pink */
     outline: none;
     opacity: 0.7;
     -webkit-transition: .2s;
@@ -310,10 +337,10 @@ img {
 
 .bar {
     width: 3px;
-    background: #ff0000;
+    background: #ff69b4; /* Changed red to hot pink */
     border-radius: 3px;
     animation: equalize 1s infinite;
-    box-shadow: 0 0 5px #ff0000;
+    box-shadow: 0 0 5px #ff69b4; /* Changed red to hot pink */
 }
 
 .bar:nth-child(1) { height: 60%; animation-delay: 0.0s; }
@@ -333,8 +360,8 @@ img {
     flex-direction: column;
     align-items: center;
     font-family: 'Metal Mania', cursive;
-    color: #ff0000;
-    text-shadow: 0 0 10px rgba(255, 0, 0, 0.7);
+    color: #ff69b4; /* Changed red to hot pink */
+    text-shadow: 0 0 10px rgba(255, 105, 180, 0.7); /* Changed red to hot pink */
     transform: skew(5deg);
 }
 
@@ -348,11 +375,11 @@ img {
 
 .player-logo .small-text {
     font-size: 12px;
-    color: #ff6666;
+    color: #ff69b4; /* Changed red to hot pink */
 }
 
 .player-logo:hover {
-    text-shadow: 0 0 15px rgba(255, 0, 0, 0.9);
+    text-shadow: 0 0 15px rgba(255, 105, 180, 0.9); /* Changed red to hot pink */
     transform: skew(5deg) scale(1.05);
     transition: all 0.3s ease;
 }
@@ -414,12 +441,12 @@ img {
 }
 
 .container-fluid {
-    background: linear-gradient(145deg, #333, #111);
-    color: #ff0000;
+    background: linear-gradient(145deg, #333, #0000ff); /* Changed black to electric blue */
+    color: #ff69b4; /* Changed red to hot pink */
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-    border: 3px solid #ff0000;
+    border: 3px solid #ff69b4; /* Changed red to hot pink */
 }
 
 @media (max-width: 576px) {
@@ -505,7 +532,7 @@ img {
     .social-toggle {
         display: block !important;
         padding: 5px 10px !important;
-        color: #ff0000 !important;
+        color: #ff69b4 !important; /* Changed red to hot pink */
         cursor: pointer !important;
     }
 
@@ -699,18 +726,18 @@ img {
 
 .event-details {
     background: linear-gradient(145deg, #ffe0e0, #ffd0d0);
-    color: #cc0000;
+    color: #ff69b4; /* Changed red to hot pink */
     padding: 20px;
-    border: 2px solid #ff0000;
+    border: 2px solid #ff69b4; /* Changed red to hot pink */
     border-radius: 8px;
     margin-bottom: 20px;
-    box-shadow: 0 0 15px rgba(255, 0, 0, 0.2);
+    box-shadow: 0 0 15px rgba(255, 105, 180, 0.2); /* Changed red to hot pink */
     transition: all 0.3s ease;
 }
 
 .event-details:hover {
-    border-color: #ff3333;
-    box-shadow: 0 0 20px rgba(255, 0, 0, 0.3);
+    border-color: #ff69b4; /* Changed red to hot pink */
+    box-shadow: 0 0 20px rgba(255, 105, 180, 0.3); /* Changed red to hot pink */
 }
 
 .event-details p {
@@ -719,13 +746,13 @@ img {
 }
 
 .event-details a {
-    color: #ff0000;
+    color: #ff69b4; /* Changed red to hot pink */
     text-decoration: none;
     transition: color 0.2s ease;
 }
 
 .event-details a:hover {
-    color: #cc0000;
+    color: #ff69b4; /* Changed red to hot pink */
     text-decoration: underline;
 }
 
@@ -759,7 +786,7 @@ img {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #ff0000;
+    background: #ff69b4; /* Changed red to hot pink */
     box-shadow: 0 2px 10px rgba(0,0,0,0.2);
     transition: all 0.3s ease;
     border: none;
@@ -767,7 +794,7 @@ img {
 
 .schedule-button .btn:hover {
     transform: scale(1.1);
-    background: #cc0000;
+    background: #ff69b4; /* Changed red to hot pink */
     box-shadow: 0 4px 15px rgba(0,0,0,0.3);
 }
 
@@ -987,8 +1014,8 @@ img {
 
 /* Navigation Styling */
 .navbar {
-    background: linear-gradient(145deg, #8b0000, #580000);
-    border-bottom: 2px solid #ff0000;
+    background: linear-gradient(145deg, #ff69b4, #ff1493); /* Changed red to hot pink */
+    border-bottom: 2px solid #ff69b4; /* Changed red to hot pink */
     padding: 15px 30px !important;
 }
 
@@ -1002,14 +1029,14 @@ img {
     font-family: 'Permanent Marker', cursive !important;
     font-size: 1.2rem !important;
     text-transform: uppercase !important;
-    color: #ff0000 !important;
+    color: #ff69b4 !important; /* Changed red to hot pink */
     letter-spacing: 1px !important;
     transition: all 0.3s ease !important;
 }
 
 .nav-link:hover {
     color: #fff !important;
-    text-shadow: 0 0 10px #ff0000 !important;
+    text-shadow: 0 0 10px #ff69b4 !important; /* Changed red to hot pink */
     animation: lightning 1.5s ease-in-out;
     text-shadow: 
         0 0 5px #fff,
@@ -1047,16 +1074,16 @@ img {
 
 /* Navbar Styling */
 .navbar {
-    background: linear-gradient(145deg, #8b0000, #580000);
-    border-bottom: 2px solid #ff0000;
+    background: linear-gradient(145deg, #ff69b4, #ff1493); /* Changed red to hot pink */
+    border-bottom: 2px solid #ff69b4; /* Changed red to hot pink */
     padding: 15px 30px !important;
-    color: #ff0000;
+    color: #ff69b4; /* Changed red to hot pink */
 }
 
 .navbar .navbar-brand {
     font-family: 'Metal Mania', cursive;
     font-size: 1.5rem;
-    color: #ff0000 !important;
+    color: #ff69b4 !important; /* Changed red to hot pink */
 }
 
 .navbar .navbar-brand:hover {
@@ -1126,22 +1153,22 @@ img {
 .killer-cats-title {
     font-family: 'Metal Mania', cursive;
     font-size: 4rem;
-    color: #ff0000;
+    color: #ff69b4; /* Changed red to hot pink */
     text-shadow: 3px 3px 6px #000;
     text-align: center;
     margin-top: 20px;
     position: relative;
     z-index: 1;
-    text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000, 0 0 30px #ff0000, 0 0 40px #ff0000;
+    text-shadow: 0 0 10px #ff69b4, 0 0 20px #ff69b4, 0 0 30px #ff69b4, 0 0 40px #ff69b4; /* Changed red to hot pink */
 }
 
 /* Jumbotron Styling */
 .jumbotron {
-    background: linear-gradient(145deg, #8b0000, #580000);
-    color: #ff0000;
+    background: linear-gradient(145deg, #ff69b4, #ff1493); /* Changed red to hot pink */
+    color: #ff69b4; /* Changed red to hot pink */
     text-shadow: 2px 2px 4px #000;
     padding: 50px 20px;
-    border-bottom: 2px solid #ff0000;
+    border-bottom: 2px solid #ff69b4; /* Changed red to hot pink */
     position: relative;
     z-index: 1;
 }
@@ -1174,8 +1201,8 @@ img {
         background: linear-gradient(145deg, #0b0b0b, #0a0909);
     box-shadow: 0 0 15px rgba(255, 182, 230, 0.3);
     transition: all 0.3s ease;
-    color: #ff0000;
-    text-shadow: 0 0 1px rgba(255, 0, 0, 0.3);
+    color: #ff69b4; /* Changed red to hot pink */
+    text-shadow: 0 0 1px rgba(255, 105, 180, 0.3); /* Changed red to hot pink */
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     font-weight: 500;
@@ -1207,23 +1234,23 @@ img {
 
 /* Button Styling */
 .btn-primary {
-    background-color: #ff0000;
-    border-color: #ff0000;
+    background-color: #ff69b4; /* Changed red to hot pink */
+    border-color: #ff69b4; /* Changed red to hot pink */
     font-family: 'Permanent Marker', cursive;
 }
 
 .btn-primary:hover {
-    background-color: #cc0000;
-    border-color: #cc0000;
+    background-color: #ff69b4; /* Changed red to hot pink */
+    border-color: #ff69b4; /* Changed red to hot pink */
 }
 
 /* Footer Styling */
 footer {
-    background: linear-gradient(145deg, #8b0000, #580000);
-    color: #ff0000;
+    background: linear-gradient(145deg, #ff69b4, #ff1493); /* Changed red to hot pink */
+    color: #ff69b4; /* Changed red to hot pink */
     padding: 20px 0;
     text-align: center;
-    border-top: 2px solid #ff0000;
+    border-top: 2px solid #ff69b4; /* Changed red to hot pink */
 }
 
 @media (max-width: 768px) {
@@ -1270,7 +1297,7 @@ footer {
 
 @keyframes lightning {
     0%, 100% {
-        text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000, 0 0 30px #ff0000, 0 0 40px #ff0000;
+        text-shadow: 0 0 10px #ff69b4, 0 0 20px #ff69b4, 0 0 30px #ff69b4, 0 0 40px #ff69b4; /* Changed red to hot pink */
     }
     50% {
         text-shadow: 0 0 20px #ffffff, 0 0 30px #ffffff, 0 0 40px #ffffff, 0 0 50px #ffffff;
@@ -1294,19 +1321,19 @@ footer {
 .store-link {
     display: flex !important;
     align-items: center !important;
-    color: #ff0000 !important;
+    color: #ff69b4 !important; /* Changed red to hot pink */
     font-family: 'Metal Mania', cursive !important;
     padding: 8px 15px !important;
     border-radius: 20px !important;
-    border: 2px solid #ff0000 !important;
+    border: 2px solid #ff69b4 !important; /* Changed red to hot pink */
     transition: all 0.3s ease !important;
 }
 
 .store-link:hover {
-    background: #ff0000 !important;
+    background: #ff69b4 !important; /* Changed red to hot pink */
     color: white !important;
     transform: translateY(-2px) !important;
-    box-shadow: 0 4px 15px rgba(255, 0, 0, 0.3) !important;
+    box-shadow: 0 4px 15px rgba(255, 105, 180, 0.3) !important; /* Changed red to hot pink */
 }
 
 .store-link i {
@@ -1327,7 +1354,7 @@ footer {
     transition: all 0.3s ease;
     z-index: 1000;
     user-select: none;
-    filter: drop-shadow(0 0 10px #ff0000);
+    filter: drop-shadow(0 0 10px #ff69b4); /* Changed red to hot pink */
 }
 
 .floating-cat:hover {
@@ -1379,8 +1406,8 @@ footer {
 }
 
 .dropdown-menu-dark {
-    background: linear-gradient(145deg, #8b0000, #580000) !important;
-    border: 2px solid #ff0000;
+    background: linear-gradient(145deg, #ff69b4, #ff1493) !important; /* Changed red to hot pink */
+    border: 2px solid #ff69b4; /* Changed red to hot pink */
     box-shadow: 0 4px 12px rgba(255,0,0,0.2);
 }
 
@@ -1400,46 +1427,46 @@ footer {
 }
 
 .dropdown-menu-dark .dropdown-item:hover {
-    background: linear-gradient(90deg, #ff0000 0%, #cc0000 100%);
+    background: linear-gradient(90deg, #ff69b4 0%, #ff1493 100%); /* Changed red to hot pink */
     color: #ffffff !important;
     transform: scale(1.05);
     text-shadow: 
-        0 0 5px #ff0000,
-        0 0 10px #ff0000;
+        0 0 5px #ff69b4, /* Changed red to hot pink */
+        0 0 10px #ff69b4; /* Changed red to hot pink */
 }
 
 .dropdown-menu-dark .dropdown-divider {
-    border-color: #ff3333;
-    box-shadow: 0 0 5px #ff0000;
+    border-color: #ff69b4; /* Changed red to hot pink */
+    box-shadow: 0 0 5px #ff69b4; /* Changed red to hot pink */
     margin: 8px 0;
 }
 
 .dropdown-menu-dark .dropdown-item i {
     margin-right: 12px;
-    color: #ff3333;
-    text-shadow: 0 0 5px #ff0000;
+    color: #ff69b4; /* Changed red to hot pink */
+    text-shadow: 0 0 5px #ff69b4; /* Changed red to hot pink */
 }
 
 /* Dropdown Menu Styling */
 .dropdown-menu-dark {
-    background: linear-gradient(145deg, #8b0000, #580000) !important;
-    border: 2px solid #ff0000;
+    background: linear-gradient(145deg, #ff69b4, #ff1493) !important; /* Changed red to hot pink */
+    border: 2px solid #ff69b4; /* Changed red to hot pink */
     box-shadow: 0 4px 12px rgba(255,0,0,0.2);
 }
 
 .dropdown-item {
-    color: #ff0000 !important;
+    color: #ff69b4 !important; /* Changed red to hot pink */
 }
 
 .dropdown-item:hover {
-    background: #580000 !important;
+    background: #ff1493 !important; /* Changed red to hot pink */
     color: #ffffff !important;
 }
 
 /* Upcoming Events Section Styling */
 .upcoming-events {
-    background: linear-gradient(145deg, #8b0000, #580000);
-    color: #ff0000;
+    background: linear-gradient(145deg, #ff69b4, #ff1493); /* Changed red to hot pink */
+    color: #ff69b4; /* Changed red to hot pink */
     padding: 40px 20px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
@@ -1452,14 +1479,14 @@ footer {
 
 /* Navigation Styling */
 .navbar, .secondary-nav {
-    background: linear-gradient(145deg, #8b0000, #580000);
-    border-bottom: 2px solid #ff0000;
+    background: linear-gradient(145deg, #ff69b4, #ff1493); /* Changed red to hot pink */
+    border-bottom: 2px solid #ff69b4; /* Changed red to hot pink */
     padding: 15px 30px !important;
-    color: #ff0000;
+    color: #ff69b4; /* Changed red to hot pink */
 }
 
 .navbar .nav-link, .secondary-nav .nav-link {
-    color: #ff0000 !important;
+    color: #ff69b4 !important; /* Changed red to hot pink */
 }
 
 .navbar .nav-link:hover, .secondary-nav .nav-link:hover {
@@ -1467,21 +1494,21 @@ footer {
 }
 
 .navbar .social-buttons .btn, .secondary-nav .social-buttons .btn {
-    background: #ff0000;
-    border: 2px solid #ff0000;
+    background: #ff69b4; /* Changed red to hot pink */
+    border: 2px solid #ff69b4; /* Changed red to hot pink */
     color: #ffffff;
 }
 
 .navbar .social-buttons .btn:hover, .secondary-nav .social-buttons .btn:hover {
-    background: #cc0000;
-    border: 2px solid #cc0000;
+    background: #ff69b4; /* Changed red to hot pink */
+    border: 2px solid #ff69b4; /* Changed red to hot pink */
 }
 
 /* Catch the Cat Button Styling */
 .catch-cat-button {
-    background: linear-gradient(145deg, #333, #111);
-    color: #ff0000;
-    border: 2px solid #ff0000;
+    background: linear-gradient(145deg, #333, #0000ff); /* Changed black to electric blue */
+    color: #ff69b4; /* Changed red to hot pink */
+    border: 2px solid #ff69b4; /* Changed red to hot pink */
     border-radius: 5px;
     padding: 10px 20px;
     font-family: 'Permanent Marker', cursive;
@@ -1550,265 +1577,265 @@ footer {
     .game-toggle:focus {
         background-color: inherit !important;
     }
-}
 
-/* Specific mobile touch handling */
-@media (hover: none) {
-    .game-toggle {
-        -webkit-tap-highlight-color: transparent;
-        -webkit-touch-callout: none;
-        -webkit-user-select: none;
-        user-select: none;
+    /* Specific mobile touch handling */
+    @media (hover: none) {
+        .game-toggle {
+            -webkit-tap-highlight-color: transparent;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+
+        /* Remove hover effects completely for touch devices */
+        .game-toggle:hover,
+        .game-toggle:active,
+        .game-toggle:focus {
+            background-color: #000 !important;
+            color: #fff !important;
+        }
+
+        .game-toggle.active {
+            background-color: #fff !important;
+        }
+
+        /* Force white cat in black background when game ends */
+        .game-toggle:not(.active) .fas.fa-cat::before {
+            color: #fff !important;
+        }
+
+        /* Force black cat in white background during game */
+        .game-toggle.active .fas.fa-cat::before {
+            color: #000 !important;
+        }
     }
 
-    /* Remove hover effects completely for touch devices */
-    .game-toggle:hover,
-    .game-toggle:active,
-    .game-toggle:focus {
-        background-color: #000 !important;
-        color: #fff !important;
+    .bio-content h1 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+        color: #333;
     }
 
-    .game-toggle.active {
-        background-color: #fff !important;
+    .bio-content p {
+        margin-bottom: 1rem;
+        line-height: 1.6;
     }
 
-    /* Force white cat in black background when game ends */
-    .game-toggle:not(.active) .fas.fa-cat::before {
-        color: #fff !important;
+    .bio-content em {
+        color: #666;
+        font-style: italic;
     }
 
-    /* Force black cat in white background during game */
-    .game-toggle.active .fas.fa-cat::before {
-        color: #000 !important;
-    }
-}
-
-.bio-content h1 {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-    color: #333;
-}
-
-.bio-content p {
-    margin-bottom: 1rem;
-    line-height: 1.6;
-}
-
-.bio-content em {
-    color: #666;
-    font-style: italic;
-}
-
-.bio-content strong {
-    color: #444;
-    font-weight: 600;
-}
-
-.card-body .collapse .card-body {
-    padding: 1.25rem;
-    background-color: #f8f9fa;
-    border-radius: 0.25rem;
-}
-
-.bio-toggle i {
-    transition: all 0.3s ease;
-    margin-right: 0.5rem;
-    transform-origin: center;
-}
-
-.bio-toggle:hover i {
-    transform: scale(1.1);
-}
-
-.bio-toggle[aria-expanded="true"] i {
-    transform: rotateY(180deg);
-}
-
-.bio-toggle[aria-expanded="false"] i {
-    transform: rotateY(0deg);
-}
-
-/* Media query for very large screens */
-@media (min-width: 1400px) {
-    .events-section {
-        max-width: 1400px; /* Limit maximum width on very large screens */
-    }
-}
-
-@media (max-width: 768px) {
-    .container-fluid {
-        background: transparent !important;
-        background-color: transparent !important;
-        border: none !important;
-        box-shadow: none !important;
+    .bio-content strong {
+        color: #444;
+        font-weight: 600;
     }
 
-    .navbar-collapse {
-        background: linear-gradient(145deg, #333, #111) !important;
-        border: 2px solid #ff0000 !important;
-        border-radius: 8px !important;
-        padding: 15px !important;
-        margin-top: 10px !important;
-    }
-    
-    .navbar-nav {
-        background: transparent !important;
-    }
-    
-    .nav-item {
-        background: transparent !important;
+    .card-body .collapse .card-body {
+        padding: 1.25rem;
+        background-color: #f8f9fa;
+        border-radius: 0.25rem;
     }
 
-    .boombox-player {
-        background: #2d2d2d !important;
+    .bio-toggle i {
+        transition: all 0.3s ease;
+        margin-right: 0.5rem;
+        transform-origin: center;
     }
 
-    .store-nav-item {
-        background: transparent !important;
-    }
-}
-
-@media (max-width: 768px) {
-    .navbar {
-        padding: 8px 15px !important;
+    .bio-toggle:hover i {
+        transform: scale(1.1);
     }
 
-    .container-fluid {
-        background: transparent !important;
-        border: none !important;
-        box-shadow: none !important;
-        padding: 0 !important;
+    .bio-toggle[aria-expanded="true"] i {
+        transform: rotateY(180deg);
     }
 
-    .navbar-collapse {
-        background: linear-gradient(145deg, #333, #111) !important;
-        border: 1px solid #ff0000 !important;
-        border-radius: 4px !important;
-        padding: 8px !important;
-        margin-top: 8px !important;
-        width: 100% !important;
+    .bio-toggle[aria-expanded="false"] i {
+        transform: rotateY(0deg);
     }
 
-    .navbar-nav {
-        gap: 8px !important;
+    /* Media query for very large screens */
+    @media (min-width: 1400px) {
+        .events-section {
+            max-width: 1400px; /* Limit maximum width on very large screens */
+        }
     }
 
-    .nav-item {
-        margin: 2px 0 !important;
+    @media (max-width: 768px) {
+        .container-fluid {
+            background: transparent !important;
+            background-color: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+        }
+
+        .navbar-collapse {
+            background: linear-gradient(145deg, #333, #0000ff) !important; /* Changed black to electric blue */
+            border: 2px solid #ff69b4 !important; /* Changed red to hot pink */
+            border-radius: 8px !important;
+            padding: 15px !important;
+            margin-top: 10px !important;
+        }
+        
+        .navbar-nav {
+            background: transparent !important;
+        }
+        
+        .nav-item {
+            background: transparent !important;
+        }
+
+        .boombox-player {
+            background: #2d2d2d !important;
+        }
+
+        .store-nav-item {
+            background: transparent !important;
+        }
     }
 
-    .boombox-player {
-        margin: 5px 0 !important;
-        padding: 3px 8px !important;
-        transform: scale(0.9) !important;
+    @media (max-width: 768px) {
+        .navbar {
+            padding: 8px 15px !important;
+        }
+
+        .container-fluid {
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+            padding: 0 !important;
+        }
+
+        .navbar-collapse {
+            background: linear-gradient(145deg, #333, #0000ff) !important; /* Changed black to electric blue */
+            border: 1px solid #ff69b4 !important; /* Changed red to hot pink */
+            border-radius: 4px !important;
+            padding: 8px !important;
+            margin-top: 8px !important;
+            width: 100% !important;
+        }
+
+        .navbar-nav {
+            gap: 8px !important;
+        }
+
+        .nav-item {
+            margin: 2px 0 !important;
+        }
+
+        .boombox-player {
+            margin: 5px 0 !important;
+            padding: 3px 8px !important;
+            transform: scale(0.9) !important;
+        }
+
+        .store-nav-item {
+            transform: scale(0.9) !important;
+        }
+
+        .social-buttons {
+            padding: 5px 0 !important;
+            gap: 10px !important;
+            transform: scale(0.9) !important;
+        }
+
+        .contact-info {
+            margin-top: 5px !important;
+            transform: scale(0.9) !important;
+        }
+
+        .navbar-brand {
+            font-size: 1.3rem !important;
+        }
     }
 
-    .store-nav-item {
-        transform: scale(0.9) !important;
+    @media (max-width: 768px) {
+        .container-fluid {
+            background-color: transparent !important;
+        }
     }
 
-    .social-buttons {
-        padding: 5px 0 !important;
-        gap: 10px !important;
-        transform: scale(0.9) !important;
+    main.container-fluid,
+    .jumbotron {
+        background: none !important;
     }
 
-    .contact-info {
-        margin-top: 5px !important;
-        transform: scale(0.9) !important;
+    /* Navbar Styling */
+    @media (max-width: 768px) {
+        .contact-info-inline {
+            display: flex !important;
+            align-items: center !important;
+            gap: 10px !important;
+            justify-content: center !important;
+        }
+        .boombox-player {
+            width: 50px !important;
+            height: 50px !important;
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: center !important;
+            justify-content: center !important;
+            background-color: #000 !important;
+            border: 2px solid #ff69b4 !important; /* Changed red to hot pink */
+            border-radius: 10px !important;
+            padding: 5px !important;
+            margin-left: auto !important;
+            margin-right: auto !important;
+        }
+        .boombox-controls {
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: center !important;
+            gap: 5px !important;
+        }
+        .boombox-play {
+            width: 30px !important;
+            height: 30px !important;
+        }
+        .boombox-volume {
+            display: none !important;
+        }
     }
 
-    .navbar-brand {
-        font-size: 1.3rem !important;
+    .list-group-item {
+        background-color: #000000 !important;
+        color: #ff69b4; /* Changed red to hot pink */
+        border: 1px solid #ff69b4; /* Changed red to hot pink */
     }
-}
 
-@media (max-width: 768px) {
-    .container-fluid {
-        background-color: transparent !important;
+    .list-group-item:hover {
+        background-color: #000000 !important;
+        border-color: #ff69b4; /* Changed red to hot pink */
     }
-}
 
-main.container-fluid,
-.jumbotron {
-    background: none !important;
-}
-
-/* Navbar Styling */
-@media (max-width: 768px) {
-    .contact-info-inline {
-        display: flex !important;
-        align-items: center !important;
-        gap: 10px !important;
-        justify-content: center !important;
+    .newsletter-modal .modal-content {
+        background: linear-gradient(145deg, #ffb6e6, #e8b5ff);
+        border: 2px solid #ff69b4; /* Changed red to hot pink */
     }
-    .boombox-player {
-        width: 50px !important;
-        height: 50px !important;
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: center !important;
-        justify-content: center !important;
-        background-color: #000 !important;
-        border: 2px solid #ff0000 !important;
-        border-radius: 10px !important;
-        padding: 5px !important;
-        margin-left: auto !important;
-        margin-right: auto !important;
+
+    .newsletter-form {
+        padding: 20px;
     }
-    .boombox-controls {
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: center !important;
-        gap: 5px !important;
+
+    .newsletter-form input {
+        border: 2px solid #ff69b4; /* Changed red to hot pink */
+        border-radius: 4px;
+        padding: 8px;
+        margin-bottom: 15px;
     }
-    .boombox-play {
-        width: 30px !important;
-        height: 30px !important;
+
+    .newsletter-success {
+        color: #28a745;
+        padding: 10px;
+        border-radius: 4px;
+        display: none;
     }
-    .boombox-volume {
-        display: none !important;
+
+    .newsletter-error {
+        color: #dc3545;
+        padding: 10px;
+        border-radius: 4px;
+        display: none;
     }
-}
-
-.list-group-item {
-    background-color: #000000 !important;
-    color: #ff0000;
-    border: 1px solid #ff0000;
-}
-
-.list-group-item:hover {
-    background-color: #000000 !important;
-    border-color: #ff3333;
-}
-
-.newsletter-modal .modal-content {
-    background: linear-gradient(145deg, #ffb6e6, #e8b5ff);
-    border: 2px solid #ff0000;
-}
-
-.newsletter-form {
-    padding: 20px;
-}
-
-.newsletter-form input {
-    border: 2px solid #ff0000;
-    border-radius: 4px;
-    padding: 8px;
-    margin-bottom: 15px;
-}
-
-.newsletter-success {
-    color: #28a745;
-    padding: 10px;
-    border-radius: 4px;
-    display: none;
-}
-
-.newsletter-error {
-    color: #dc3545;
-    padding: 10px;
-    border-radius: 4px;
-    display: none;
 }

@@ -104,16 +104,15 @@ document.addEventListener('DOMContentLoaded', function () {
     newSubmitButton.addEventListener('click', function (e) {
         e.preventDefault();
         
-        const eventDate = document.getElementById('eventDate').value;
-        const eventDetails = document.getElementById('eventDetails').value;
+        const eventDate = document.getElementById('eventDate').value.trim();
+        const eventDetails = document.getElementById('eventDetails').value.trim();
 
-        if (!eventDate) {
-            alert('Please fill in the date field.');
-            return;
-        }
+        // Debugging statements
+        console.log('Event Date:', eventDate);
+        console.log('Event Details:', eventDetails);
 
-        if (!eventDetails) {
-            alert('Please fill in the Additional Details field.');
+        if (!eventDate || !eventDetails) {
+            alert('Please fill in both fields.');
             return;
         }
 
@@ -132,9 +131,8 @@ document.addEventListener('DOMContentLoaded', function () {
         window.location.href = mailtoLink;
 
         // Properly close modal and reset page state
-        $('#scheduleModal').modal('hide');
-        $('body').removeClass('modal-open');
-        $('.modal-backdrop').remove();
+        const scheduleModal = new bootstrap.Modal(document.getElementById('scheduleModal'));
+        scheduleModal.hide();
 
         // Clear form fields
         document.getElementById('eventDate').value = '';
@@ -149,63 +147,6 @@ document.addEventListener('DOMContentLoaded', function () {
     // Reset warning flag when modal is closed
     $('#scheduleModal').on('hidden.bs.modal', function () {
         hasShownWarning = false;
-    });
-
-    if (!submitButton) {
-        console.error('Submit button not found in DOM');
-        return;
-    }
-
-    submitButton.addEventListener('click', function(e) {
-        e.preventDefault();
-
-        // Debug: Check form elements
-        const eventDate = document.getElementById('eventDate');
-        const eventDetails = document.getElementById('eventDetails');
-        
-        console.log('Form elements:', {
-            dateElement: eventDate,
-            detailsElement: eventDetails
-        });
-
-        if (!eventDate || !eventDetails) {
-            console.error('Form elements not found');
-            return;
-        }
-
-        const dateValue = eventDate.value;
-        const detailsValue = eventDetails.value;
-
-        console.log('Form values:', {
-            date: dateValue,
-            details: detailsValue
-        });
-
-        if (!dateValue || !detailsValue) {
-            alert('Please fill in both the date and details fields.');
-            return;
-        }
-
-        // Create and open mailto link
-        const subject = encodeURIComponent('Event Schedule Request');
-        const body = encodeURIComponent(`Event Date: ${dateValue}\n\nEvent Details: ${detailsValue}`);
-        const mailtoLink = `mailto:kk1llercatsfromouterspace@gmail.com?subject=${subject}&body=${body}`;
-
-        window.location.href = mailtoLink;
-
-        // Properly close modal and reset page state
-        $('#scheduleModal').modal('hide');
-        $('body').removeClass('modal-open');
-        $('.modal-backdrop').remove();
-
-        // Clear form fields
-        eventDate.value = '';
-        eventDetails.value = '';
-
-        // Reload the page to reset state
-        setTimeout(() => {
-            window.location.reload();
-        }, 1000);
     });
 
     // Audio Player Setup
@@ -232,62 +173,53 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Initialize audio player
     initAudioPlayer();
-});
 
-document.addEventListener('DOMContentLoaded', function() {
-    const eventForm = document.getElementById('eventRequestForm');
-    const submitButton = document.getElementById('submitEventBtn');
+    // Single consolidated form handler
+    function initializeEventForm() {
+        const eventForm = document.getElementById('scheduleForm');
+        const submitButton = document.getElementById('submitEventBtn');
+        const scheduleModal = document.getElementById('scheduleModal');
 
-    function handleSubmission(e) {
-        e.preventDefault();
-        e.stopPropagation();  // Prevent event bubbling
+        if (eventForm && submitButton) {
+            const modal = new bootstrap.Modal(scheduleModal);
 
-        const eventDate = document.getElementById('eventDate').value.trim();
-        const eventDetails = document.getElementById('eventDetails').value.trim();
+            function handleSubmission(e) {
+                e.preventDefault();
+                e.stopPropagation();
 
-        // Debug logging for mobile
-        console.log('Form submission:', {
-            eventDate,
-            eventDetails,
-            isMobile: /iPhone|iPad|iPod|Android/i.test(navigator.userAgent)
-        });
+                const eventDate = document.getElementById('eventDate').value.trim();
+                const eventDetails = document.getElementById('eventDetails').value.trim();
 
-        if (eventDate && eventDetails) {
-            const [year, month, day] = eventDate.split('-');
-            const formattedDate = `${month}-${day}-${year}`;
-            
-            const subject = encodeURIComponent(`Event Schedule Request - ${formattedDate}`);
-            const body = encodeURIComponent(`Event Date: ${formattedDate}\n\nEvent Details: ${eventDetails}`);
-            const mailtoLink = `mailto:kk1llercatsfromouterspace@gmail.com?subject=${subject}&body=${body}`;
-            
-            // Clean up and redirect
-            $('#scheduleModal').modal('hide');
-            $('body').removeClass('modal-open');
-            $('.modal-backdrop').remove();
-            
-            // Short delay for mobile
-            setTimeout(() => {
-                window.location.href = mailtoLink;
-            }, 100);
+                if (!eventDate || !eventDetails) {
+                    alert('Please fill in both fields.');
+                    return;
+                }
 
-            // Clear form
-            eventForm.reset();
-            
-            return false;
+                const [year, month, day] = eventDate.split('-');
+                const formattedDate = `${month}-${day}-${year}`;
+                
+                const subject = encodeURIComponent(`Event Schedule Request - ${formattedDate}`);
+                const body = encodeURIComponent(`Event Date: ${formattedDate}\n\nEvent Details: ${eventDetails}`);
+                const mailtoLink = `mailto:kk1llercatsfromouterspace@gmail.com?subject=${subject}&body=${body}`;
+                
+                // Clean up and redirect
+                modal.hide();
+                eventForm.reset();
+                
+                // Short delay for mobile
+                setTimeout(() => {
+                    window.location.href = mailtoLink;
+                }, 100);
+            }
+
+            // Attach single event listener to form
+            eventForm.addEventListener('submit', handleSubmission);
+            // Remove direct click handler from submit button since form submission will handle it
         }
-        alert('Please fill in both the date and details fields.');
-        return false;
     }
 
-    // Remove these problematic lines:
-    // const newForm = eventForm.cloneNode(true);
-    // eventForm.parentNode.replaceChild(newForm, eventForm);
-
-    // Replace with direct event listener:
-    if (eventForm) {
-        eventForm.addEventListener('submit', handleSubmission);
-        submitButton.addEventListener('click', handleSubmission);
-    }
+    // Initialize form handling
+    initializeEventForm();
 });
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -365,42 +297,33 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-document.addEventListener('DOMContentLoaded', function() {
-    const eventForm = document.getElementById('scheduleForm'); // Changed from 'eventRequestForm'
-    const submitButton = document.getElementById('submitEventBtn');
-    const scheduleModal = document.getElementById('scheduleModal');
+document.addEventListener("DOMContentLoaded", function() {
+    // Ensure there are no scripts causing the blue screen
+    // ...existing code...
     
-    if (eventForm && submitButton) {
-        const modal = new bootstrap.Modal(scheduleModal);
-        
-        // Single event handler for form submission
-        submitButton.addEventListener('click', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            
-            const eventDate = document.getElementById('eventDate').value.trim();
-            const eventDetails = document.getElementById('eventDetails').value.trim();
-            
-            if (!eventDate || !eventDetails) {
-                alert('Please fill in both fields');
-                return;
-            }
-            
-            const [year, month, day] = eventDate.split('-');
-            const formattedDate = `${month}-${day}-${year}`;
-            
-            const subject = encodeURIComponent(`Event Schedule Request - ${formattedDate}`);
-            const body = encodeURIComponent(`Event Date: ${formattedDate}\n\nEvent Details: ${eventDetails}`);
-            const mailtoLink = `mailto:kk1llercatsfromouterspace@gmail.com?subject=${subject}&body=${body}`;
-            
-            // Close modal and clean up
-            modal.hide();
-            eventForm.reset();
-            
-            // Short delay for mobile devices
-            setTimeout(() => {
-                window.location.href = mailtoLink;
-            }, 100);
-        });
+    // Example: Remove any script that sets the background color to blue
+    // document.body.style.backgroundColor = "blue";
+    
+    // ...existing code...
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    const bandDropdown = document.getElementById('bandDropdown');
+    
+    if (bandDropdown) {
+        // Check if the event listener has already been added
+        if (!bandDropdown.dataset.listenerAdded) {
+            bandDropdown.addEventListener('click', function() {
+                // console.log('Dropdown clicked');
+            });
+            // Mark the listener as added
+            bandDropdown.dataset.listenerAdded = true;
+        }
     }
+
+    // Initialize all dropdowns
+    const dropdownElements = [].slice.call(document.querySelectorAll('.dropdown-toggle'));
+    dropdownElements.forEach(function (dropdownToggleEl) {
+        new bootstrap.Dropdown(dropdownToggleEl);
+    });
 });

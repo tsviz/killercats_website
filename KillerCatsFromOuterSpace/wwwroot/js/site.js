@@ -1,5 +1,11 @@
 document.addEventListener('DOMContentLoaded', function() {
     try {
+        // Remove the delay for showing the content
+        document.body.classList.add('show-content');
+
+        // Scroll to the header after a delay
+        setTimeout(scrollToHeader, 1000);
+
         // Verify storage access
         if (typeof localStorage === 'undefined') {
             console.warn('Local storage not available');
@@ -66,3 +72,18 @@ function initializeApp() {
     // App initialization code here
     // console.log('App initialized successfully');
 }
+
+function scrollToHeader() {
+    const header = document.querySelector('header');
+    if (header) {
+        // console.log('Scrolling to header:', header); // Debugging line
+        header.scrollIntoView({ behavior: 'smooth' });
+    } else {
+        console.error('Header element not found'); // Debugging line
+    }
+}
+
+// Ensure the header element is available before scrolling
+window.onload = function() {
+    setTimeout(scrollToHeader, 1000);
+};

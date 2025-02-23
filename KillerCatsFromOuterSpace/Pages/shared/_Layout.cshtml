@@ -10,114 +10,124 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container-fluid">
-            <div class="dropdown">
-                <a class="navbar-brand dropdown-toggle" href="#" role="button" id="bandDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                    Killer Cats <i class="fas fa-meteor ms-2"></i>
-                </a>
-                <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="bandDropdown">
-                    <li><a class="dropdown-item" href="#latest-music">Latest Music</a></li>
-                    <li><a class="dropdown-item" href="#tour-dates">Tour Dates</a></li>
-                    <li><a class="dropdown-item" href="#merch">Merch Store</a></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#newsletterModal">Join Newsletter</a></li>
-                </ul>
-            </div>
-            <button class="btn btn-outline-light ms-2 game-toggle" onclick="initCatGame()">
-                <i class="fas fa-cat"></i> 
-            </button>
-            <div class="boombox-player ms-2">
-                <div class="boombox-controls">
-                    <button class="boombox-play" onclick="togglePlay()" title="Play/Pause">
-                        <i class="fas fa-play"></i>
-                    </button>
-                    <input type="range" class="boombox-volume" min="0" max="1" step="0.1" value="1" oninput="setVolume(this.value)">
-                </div>
-                <audio id="audio-player" loop="">
-                    <source src="/audio/hard-rock-audio.mp3" type="audio/mpeg">
-                </audio>
-            </div>
-            <audio id="catSound" src="/sounds/cat-meow.mp3" preload="auto"></audio>
-            <img id="preloadedCatImage" src="/images/animated-cat.gif" style="display: none;">
-            <button class="navbar-toggler" 
-                    type="button" data-toggle="collapse" 
-                    data-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/Events">Events</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/Index#about">About the Band</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Secondary Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light secondary-nav">
-        <div class="container-fluid">
-            <ul class="navbar-nav me-auto d-flex align-items-center">
-                <li class="nav-item contact-info-inline">
-                    <a class="nav-link" href="#about">About Us</a>
-                    <a href="https://www.ebay.com/placeholder-store" target="_blank" class="store-link" title="Visit our Store">
-                        <i class="fas fa-shopping-cart"></i>
-                        Merch Store
-                    </a>
-                    <a class="nav-link" href="mailto:kk1llercatsfromouterspace@gmail.com">
-                        <i class="fas fa-envelope"></i>
-                    </a>
-                    <a class="nav-link" href="tel:+1234567890">
-                        <i class="fas fa-phone"></i>
-                    </a>
-                </li>
-            </ul>
-            <div class="social-buttons">
-                <div class="social-button">
-                    <a href="https://facebook.com/placeholder" target="_blank" class="btn facebook-btn" title="Facebook">
-                        <i class="fab fa-facebook-f"></i>
-                    </a>
-                </div>
-                <div class="social-button">
-                    <a href="https://www.instagram.com/kk1llercatsfromouterspace" target="_blank" class="btn instagram-btn" title="Instagram">
-                        <i class="fab fa-instagram"></i>
-                    </a>
-                </div>
-                <div class="social-button">
-                    <a href="https://tiktok.com/placeholder" target="_blank" class="btn tiktok-btn" title="TikTok">
-                        <i class="fab fa-tiktok"></i>
-                    </a>
-                </div>
-                <div class="social-button">
-                    <a href="https://twitter.com/placeholder" target="_blank" class="btn twitter-btn" title="Twitter">
-                        <i class="fab fa-twitter"></i>
-                    </a>
-                </div>
-                <div class="social-button">
-                    <a href="https://youtube.com/placeholder" target="_blank" class="btn youtube-btn" title="YouTube">
-                        <i class="fab fa-youtube"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Move floating schedule button to top-right corner -->
-    <div class="schedule-button">
-        <button type="button" 
-                class="btn btn-primary rounded-pill shadow-lg" 
-                data-toggle="modal" 
-                data-target="#scheduleModal"
-                title="Schedule an Event">
-            <i class="fas fa-calendar-plus"></i>
-        </button>
+    <!-- Full-screen overlay for the logo -->
+    <div id="logo-overlay">
+        <img src="~/images/killer-cats-main-logo.jpeg" alt="Killer Cats Main Logo">
     </div>
+
+    @if (!Context.Request.Path.Value.Contains("/Events"))
+    {
+        <header>
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                <div class="container-fluid">
+                    <div class="dropdown">
+                        <a class="navbar-brand dropdown-toggle" href="#" role="button" id="bandDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                            Killer Cats <i class="fas fa-meteor ms-2"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="bandDropdown">
+                            <li><a class="dropdown-item" href="#latest-music">Latest Music</a></li>
+                            <li><a class="dropdown-item" href="#tour-dates">Tour Dates</a></li>
+                            <li><a class="dropdown-item" href="#merch">Merch Store</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#newsletterModal">Join Newsletter</a></li>
+                        </ul>
+                    </div>
+                    <button class="btn btn-outline-light ms-2 game-toggle" onclick="initCatGame()">
+                        <i class="fas fa-cat"></i> 
+                    </button>
+                    <div class="boombox-player ms-2">
+                        <div class="boombox-controls">
+                            <button class="boombox-play" onclick="togglePlay()" title="Play/Pause">
+                                <i class="fas fa-play"></i>
+                            </button>
+                            <input type="range" class="boombox-volume" min="0" max="1" step="0.1" value="1" oninput="setVolume(this.value)">
+                        </div>
+                        <audio id="audio-player" loop="">
+                            <source src="/audio/hard-rock-audio.mp3" type="audio/mpeg">
+                        </audio>
+                    </div>
+                    <audio id="catSound" src="/sounds/cat-meow.mp3" preload="auto"></audio>
+                    <img id="preloadedCatImage" src="/images/animated-cat.gif" style="display: none;">
+                    <button class="navbar-toggler" 
+                            type="button" data-toggle="collapse" 
+                            data-target="#navbarNav">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link" href="/">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/Events">Events</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/Index#about">About the Band</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <!-- Secondary Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light secondary-nav">
+            <div class="container-fluid">
+                <ul class="navbar-nav me-auto d-flex align-items-center">
+                    <li class="nav-item contact-info-inline">
+                        <a class="nav-link" href="#about">About Us</a>
+                        <a href="https://www.ebay.com/placeholder-store" target="_blank" class="store-link" title="Visit our Store">
+                            <i class="fas fa-shopping-cart"></i>
+                            Merch Store
+                        </a>
+                        <a class="nav-link" href="mailto:kk1llercatsfromouterspace@gmail.com">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                        <a class="nav-link" href="tel:+1234567890">
+                            <i class="fas fa-phone"></i>
+                        </a>
+                    </li>
+                </ul>
+                <div class="social-buttons">
+                    <div class="social-button">
+                        <a href="https://facebook.com/placeholder" target="_blank" class="btn facebook-btn" title="Facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                    </div>
+                    <div class="social-button">
+                        <a href="https://www.instagram.com/kk1llercatsfromouterspace" target="_blank" class="btn instagram-btn" title="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                    <div class="social-button">
+                        <a href="https://tiktok.com/placeholder" target="_blank" class="btn tiktok-btn" title="TikTok">
+                            <i class="fab fa-tiktok"></i>
+                        </a>
+                    </div>
+                    <div class="social-button">
+                        <a href="https://twitter.com/placeholder" target="_blank" class="btn twitter-btn" title="Twitter">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                    </div>
+                    <div class="social-button">
+                        <a href="https://youtube.com/placeholder" target="_blank" class="btn youtube-btn" title="YouTube">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Move floating schedule button to top-right corner -->
+        <div class="schedule-button">
+            <button type="button" 
+                    class="btn btn-primary rounded-pill shadow-lg" 
+                    data-toggle="modal" 
+                    data-target="#scheduleModal"
+                    title="Schedule an Event">
+                <i class="fas fa-calendar-plus"></i>
+            </button>
+        </div>
+    }
 
     <!-- Schedule Event Modal -->
     <div class="modal fade" id="scheduleModal" tabindex="-1" role="dialog" aria-labelledby="scheduleModalTitle">
@@ -195,8 +205,8 @@
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
-    <script src="~/js/scripts.js"></script>
     <script src="~/js/catGame.js"></script>
+    <script src="~/js/scripts.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
         });
