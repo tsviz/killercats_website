@@ -279,49 +279,14 @@ document.addEventListener('DOMContentLoaded', function() {
         return false;
     }
 
-    // Remove all existing listeners
-    const newForm = eventForm.cloneNode(true);
-    eventForm.parentNode.replaceChild(newForm, eventForm);
-    
-    // Add single submit handler
-    newForm.addEventListener('submit', handleSubmission);
-    
-    // Handle both click and touch events
-    submitButton.addEventListener('click', handleSubmission);
-    submitButton.addEventListener('touchend', handleSubmission);
-});
+    // Remove these problematic lines:
+    // const newForm = eventForm.cloneNode(true);
+    // eventForm.parentNode.replaceChild(newForm, eventForm);
 
-document.getElementById('eventRequestForm').addEventListener('submit', function(e) {
-    e.preventDefault();  // Prevent default form submission
-
-    const eventDate = document.getElementById('eventDate').value.trim();
-    const eventDetails = document.getElementById('eventDetails').value.trim();
-    
-    console.log('Date:', eventDate);
-    console.log('Details:', eventDetails);
-
-    if (eventDate && eventDetails) {
-        const formData = new FormData(this);
-        
-        // Send the form data to the server
-        fetch('/Home/SubmitEventRequest', {
-            method: 'POST',
-            body: formData
-        })
-        .then(response => {
-            if (response.ok) {
-                alert('Event request submitted successfully!');
-                this.reset();
-            } else {
-                alert('Failed to submit event request.');
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            alert('An error occurred while submitting the request.');
-        });
-    } else {
-        alert('Please fill in both the date and details fields.');
+    // Replace with direct event listener:
+    if (eventForm) {
+        eventForm.addEventListener('submit', handleSubmission);
+        submitButton.addEventListener('click', handleSubmission);
     }
 });
 
@@ -396,6 +361,46 @@ document.addEventListener('DOMContentLoaded', function() {
                 newsletterForm.reset();
                 window.location.href = mailtoLink;
             }, { once: true });
+        });
+    }
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    const eventForm = document.getElementById('scheduleForm'); // Changed from 'eventRequestForm'
+    const submitButton = document.getElementById('submitEventBtn');
+    const scheduleModal = document.getElementById('scheduleModal');
+    
+    if (eventForm && submitButton) {
+        const modal = new bootstrap.Modal(scheduleModal);
+        
+        // Single event handler for form submission
+        submitButton.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            const eventDate = document.getElementById('eventDate').value.trim();
+            const eventDetails = document.getElementById('eventDetails').value.trim();
+            
+            if (!eventDate || !eventDetails) {
+                alert('Please fill in both fields');
+                return;
+            }
+            
+            const [year, month, day] = eventDate.split('-');
+            const formattedDate = `${month}-${day}-${year}`;
+            
+            const subject = encodeURIComponent(`Event Schedule Request - ${formattedDate}`);
+            const body = encodeURIComponent(`Event Date: ${formattedDate}\n\nEvent Details: ${eventDetails}`);
+            const mailtoLink = `mailto:kk1llercatsfromouterspace@gmail.com?subject=${subject}&body=${body}`;
+            
+            // Close modal and clean up
+            modal.hide();
+            eventForm.reset();
+            
+            // Short delay for mobile devices
+            setTimeout(() => {
+                window.location.href = mailtoLink;
+            }, 100);
         });
     }
 });
