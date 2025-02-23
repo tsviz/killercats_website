@@ -1,11 +1,11 @@
 name: Schedule Azure WebApp
 
 on:
-  # schedule:
+  schedule:
     # Stop at 12 AM CST (0600 UTC)
-    # - cron: '0 6 * * *'
+    - cron: '0 6 * * *'
     # Start at 8 AM CST (1400 UTC)
-    # - cron: '0 14 * * *'
+    - cron: '0 14 * * *'
   workflow_dispatch:  # Enable manual triggers
 
 env:
