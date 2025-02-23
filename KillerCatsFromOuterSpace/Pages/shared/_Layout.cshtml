@@ -156,13 +156,11 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form id="newsletterForm">
-                        <div class="form-group">
-                            <label for="emailInput">Email address</label>
-                            <input type="email" class="form-control" id="emailInput" required>
-                        </div>
-                        <button type="submit" class="btn btn-danger mt-3">Subscribe</button>
-                    </form>
+                    <div class="form-group">
+                        <label for="emailInput">Email address</label>
+                        <input type="email" class="form-control" id="emailInput" name="email" autocomplete="email" required>
+                    </div>
+                    <button type="button" class="btn btn-danger mt-3" onclick="openMail()">Subscribe</button>
                 </div>
             </div>
         </div>
@@ -195,7 +193,7 @@
         <p>&copy; 2025 Killer Cats from Outer Space. All rights reserved.</p>
     </footer>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
     <script src="~/js/scripts.js"></script>
     <script src="~/js/catGame.js"></script>
@@ -272,6 +270,13 @@
             setTimeout(function() {
                 document.body.removeChild(catImage);
             }, 4100); // Adjust the timeout duration to match the animation length
+        }
+    </script>
+    <script>
+        function openMail() {
+            var email = document.getElementById("emailInput").value;
+            window.location.href = "mailto:kk1llercatsfromouterspace@gmail.com?subject=Newsletter Subscription Request&body=New subscriber email: " + email;
+            $('#newsletterModal').modal('hide');
         }
     </script>
 </body>
