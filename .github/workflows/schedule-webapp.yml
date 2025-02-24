@@ -9,8 +9,8 @@ on:
   workflow_dispatch:  # Enable manual triggers
 
 env:
-  AZURE_WEBAPP_NAME: killercats
-  AZURE_RESOURCE_GROUP: music_apps-rg
+  AZURE_WEBAPP_NAME: KillerCats
+  AZURE_RESOURCE_GROUP: tsvi-music-rg
 
 jobs:
   manage-webapp:
